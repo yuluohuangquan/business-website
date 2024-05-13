@@ -1,7 +1,18 @@
-import Image from "next/image";
+'use client';
 
-export default function Home() {
-  return <>
-    a
-  </>;
+import { useEffect } from "react";
+import { usePathname, useRouter } from 'next/navigation';
+
+export default function Portfolio() {
+  const router = useRouter();
+    const pathname = usePathname();
+
+  useEffect(() => {
+    const language = sessionStorage.getItem("language");
+    router.push(`/${language}`);
+  }, []);
+  return (
+    <>
+    </>
+  );
 }
