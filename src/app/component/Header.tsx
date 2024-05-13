@@ -1,13 +1,13 @@
 
 'use client'
 import { usePathname, useRouter } from 'next/navigation';
+
 export default function Header() {
     const router = useRouter();
+    const pathname = usePathname();
     console.log(usePathname());
-
     const changeRoute = (route: string) => {
-        const pathName = usePathname();
-        router.push("/");
+        router.push(pathname.replace('zh', 'en'));
     }
 
     return (
