@@ -1,3 +1,5 @@
+'use client';
+
 import React from "react";
 import {
   Navbar as MTNavbar,
@@ -38,14 +40,14 @@ function NavItem({ children, href }: NavItemProps) {
 }
 
 
-export function Navbar({NAV_MENU}: any) {
+export function Navbar({ NAV_MENU }: any) {
   const router = useRouter();
   const pathname = usePathname();
 
   const [open, setOpen] = React.useState(false);
   const [isScrolling, setIsScrolling] = React.useState(false);
 
-  const [language, setLanguage] = React.useState(sessionStorage.getItem("language") || "en");
+  const [language, setLanguage] = React.useState(sessionStorage?.getItem("language") || "en");
 
   const handleOpen = () => setOpen((cur) => !cur);
 
@@ -74,12 +76,12 @@ export function Navbar({NAV_MENU}: any) {
     console.log(pathname);
     if (language === "en") {
       setLanguage("zh");
-      sessionStorage.setItem("language", "zh");
+      sessionStorage?.setItem("language", "zh");
       const url = pathname.replace('en', 'zh');
       router.push(url);
     } else {
       setLanguage("en");
-      sessionStorage.setItem("language", "en");
+      sessionStorage?.setItem("language", "en");
       const url = pathname.replace('zh', 'en');
       router.push(url);
     }
@@ -102,9 +104,8 @@ export function Navbar({NAV_MENU}: any) {
           Material Tailwind
         </Typography>
         <ul
-          className={`ml-10 hidden items-center gap-6 lg:flex ${
-            isScrolling ? "text-gray-900" : "text-white"
-          }`}
+          className={`ml-10 hidden items-center gap-6 lg:flex ${isScrolling ? "text-gray-900" : "text-white"
+            }`}
         >
           {NAV_MENU.map(({ name, icon: Icon, href }) => (
             <NavItem key={name} href={href}>
@@ -114,7 +115,7 @@ export function Navbar({NAV_MENU}: any) {
           ))}
         </ul>
         <div className="hidden items-center gap-4 lg:flex">
-          <a onClick={() => changeLanguage()} className="cursor-pointer" color={isScrolling ? "gray" : "white"} variant="text">
+          <a onClick={() => changeLanguage()} className="cursor-pointer" color={isScrolling ? "gray" : "white"}>
             {language === "en" ? "中文" : "English"}
           </a>
         </div>
@@ -142,7 +143,7 @@ export function Navbar({NAV_MENU}: any) {
             ))}
           </ul>
           <div className="mt-6 flex items-center gap-4">
-            <a onClick={() => changeLanguage()}  variant="text">
+            <a onClick={() => changeLanguage()}>
               {language === "en" ? "中文" : "English"}
             </a>
           </div>
