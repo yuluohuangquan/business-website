@@ -119,7 +119,7 @@ export function Navbar({ NAV_MENU }: any) {
           ))}
         </ul>
         <div className="hidden items-center gap-4 lg:flex">
-          <a onClick={() => changeLanguage()} className="cursor-pointer" color={isScrolling ? "gray" : "white"}>
+          <a onClick={() => changeLanguage()} className={`cursor-pointer ${isScrolling ? "text-gray-900" : "text-white"}`}>
             {language === "en" ? "中文" : "English"}
           </a>
         </div>
@@ -147,7 +147,7 @@ export function Navbar({ NAV_MENU }: any) {
             ))}
           </ul>
           <div className="mt-6 flex items-center gap-4">
-            <a onClick={() => changeLanguage()}>
+            <a onClick={() => changeLanguage()} >
               {language === "en" ? "中文" : "English"}
             </a>
           </div>
