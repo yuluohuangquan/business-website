@@ -1,6 +1,6 @@
 'use client';
 
-import React from "react";
+import { useState, useEffect } from "react";
 import {
   Navbar as MTNavbar,
   Collapse,
@@ -44,21 +44,25 @@ export function Navbar({ NAV_MENU }: any) {
   const router = useRouter();
   const pathname = usePathname();
 
-  const [open, setOpen] = React.useState(false);
-  const [isScrolling, setIsScrolling] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const [isScrolling, setIsScrolling] = useState(false);
 
-  const [language, setLanguage] = React.useState(sessionStorage?.getItem("language") || "en");
+  const [language, setLanguage] = useState("en");
 
   const handleOpen = () => setOpen((cur) => !cur);
 
-  React.useEffect(() => {
+  useEffect(() => {
+    setLanguage(sessionStorage?.getItem("language") || "en")
+  }, [])
+
+  useEffect(() => {
     window.addEventListener(
       "resize",
       () => window.innerWidth >= 960 && setOpen(false)
     );
   }, []);
 
-  React.useEffect(() => {
+  useEffect(() => {
     function handleScroll() {
       if (window.scrollY > 0) {
         setIsScrolling(true);

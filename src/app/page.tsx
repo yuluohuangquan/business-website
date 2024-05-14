@@ -8,7 +8,7 @@ export default function Portfolio() {
   const pathname = usePathname();
 
   useEffect(() => {
-    const language = sessionStorage?.getItem("language");
+    const language = 'en';
     router.push(`/${language}`);
   }, []);
   return (
