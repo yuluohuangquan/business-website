@@ -42,10 +42,25 @@ const NAV_MENU = [
   },
 ];
 
+const zxc = async () => {
+  console.log("asd")
+  const res = await fetch('/api/test', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      name: '777',
+    }),
+  })
+  console.log(res)
+}
+
 export default function Portfolio() {
   return (
     <>
-      <Navbar NAV_MENU={NAV_MENU}/>
+      <button onClick={zxc}>asd</button>
+      <Navbar NAV_MENU={NAV_MENU} />
       <Hero />
       <SponsoredBy />
       <AboutEvent />
