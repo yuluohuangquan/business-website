@@ -9,7 +9,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "generate": "prisma generate",
+    "db:push": "prisma db push"
   },
   "dependencies": {
     "@heroicons/react": "2.0.18",
