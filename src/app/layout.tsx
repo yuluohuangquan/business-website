@@ -1,3 +1,6 @@
+import {
+  ClerkProvider,
+} from '@clerk/nextjs'
 import "./globals.css";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
@@ -19,17 +22,20 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+
   return (
-    <html>
-      <head>
-        <link rel="shortcut icon" href="/favicon.png" type="image/png" />
-      </head>
-      <body className={myFont.className}>
-        <Layout>
-          {children}
-          <FixedPlugin />
-        </Layout>
-      </body>
-    </html>
+    <ClerkProvider>
+      <html>
+        <head>
+          <link rel="shortcut icon" href="/favicon.png" type="image/png" />
+        </head>
+        <body className={myFont.className}>
+          <Layout>
+            {children}
+            <FixedPlugin />
+          </Layout>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

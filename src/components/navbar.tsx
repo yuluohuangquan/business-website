@@ -17,6 +17,12 @@ import {
   Bars3Icon,
 } from "@heroicons/react/24/solid";
 import { usePathname, useRouter } from 'next/navigation';
+import {
+  SignInButton,
+  SignedIn,
+  SignedOut,
+  UserButton
+} from '@clerk/nextjs'
 
 interface NavItemProps {
   children: React.ReactNode;
@@ -150,6 +156,13 @@ export function Navbar({ NAV_MENU }: any) {
             <a onClick={() => changeLanguage()} >
               {language === "en" ? "中文" : "English"}
             </a>
+
+            <SignedOut>
+              <SignInButton />
+            </SignedOut>
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
           </div>
         </div>
       </Collapse>
