@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import { Typography } from "@material-tailwind/react";
+import { stagger, useAnimate, useInView } from "framer-motion"
+import { useEffect } from "react";
 
 const SPONSORS = [
   "coinbase",
@@ -13,9 +15,24 @@ const SPONSORS = [
 ];
 
 export function SponsoredBy() {
+
+  const [scope, animate] = useAnimate()
+  const isInView = useInView(scope, { once: true })
+
+  useEffect(() => {
+    if (isInView) {
+      console.log("isInView")
+      animate(
+        "#sponsored-by",
+        { opacity: [0, 1], y: [25, 0] },
+        { duration: 1, ease: "easeIn", delay: stagger(1) }
+      )
+    }
+  }, [animate, isInView])
+
   return (
-    <section className="py-8 px-8 lg:py-20">
-      <div className="container mx-auto text-center">
+    <section ref={scope} className="py-8 px-8 lg:py-20 mt-1">
+      <div id="sponsored-by" className="container mx-auto text-center">
         <Typography variant="h6" color="blue-gray" className="mb-8">
           SPONSORED BY
         </Typography>
