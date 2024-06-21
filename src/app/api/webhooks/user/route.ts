@@ -6,7 +6,7 @@ async function handler(request) {
     console.log(params);
 
     const result = await addTest({
-        name: '999'
+        name: '456456456456'
     });
 
     return NextResponse.json({
