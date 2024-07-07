@@ -73,5 +73,4 @@ export function Faq() {
   );
 }
 
-
 export default Faq;

@@ -7,6 +7,10 @@ import {
   Button,
   IconButton,
   Typography,
+  Menu,
+  MenuHandler,
+  MenuList,
+  MenuItem,
 } from "@material-tailwind/react";
 import {
   RectangleStackIcon,
@@ -17,12 +21,7 @@ import {
   Bars3Icon,
 } from "@heroicons/react/24/solid";
 import { usePathname, useRouter } from 'next/navigation';
-import {
-  SignInButton,
-  SignedIn,
-  SignedOut,
-  UserButton
-} from '@clerk/nextjs'
+import { useLocale, useTranslations } from 'next-intl';
 
 interface NavItemProps {
   children: React.ReactNode;
@@ -52,14 +51,9 @@ export function Navbar({ NAV_MENU }: any) {
 
   const [open, setOpen] = useState(false);
   const [isScrolling, setIsScrolling] = useState(false);
-
-  const [language, setLanguage] = useState("en");
+  const locale = useLocale(); // 获取当前语言
 
   const handleOpen = () => setOpen((cur) => !cur);
-
-  useEffect(() => {
-    setLanguage(sessionStorage?.getItem("language") || "en")
-  }, [])
 
   useEffect(() => {
     window.addEventListener(
@@ -82,20 +76,12 @@ export function Navbar({ NAV_MENU }: any) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const changeLanguage = () => {
-    console.log(pathname);
-    if (language === "en") {
-      setLanguage("zh");
-      sessionStorage?.setItem("language", "zh");
-      const url = pathname.replace('en', 'zh');
-      router.push(url);
-    } else {
-      setLanguage("en");
-      sessionStorage?.setItem("language", "en");
-      const url = pathname.replace('zh', 'en');
-      router.push(url);
-    }
-    router.refresh();
+
+  const switchLanguage = (newLocale) => {
+    // 在客户端更改语言，这将导致页面重新加载并使用新的语言
+    console.log('switchLanguage', pathname);
+
+    router.push(pathname.replace(`/${locale}`, `/${newLocale}`));
   };
 
   return (
@@ -125,9 +111,15 @@ export function Navbar({ NAV_MENU }: any) {
           ))}
         </ul>
         <div className="hidden items-center gap-4 lg:flex">
-          <a onClick={() => changeLanguage()} className={`cursor-pointer ${isScrolling ? "text-gray-900" : "text-white"}`}>
-            {language === "en" ? "中文" : "English"}
-          </a>
+        <Menu>
+      <MenuHandler>
+        <a className={`cursor-pointer ${isScrolling ? "text-gray-900" : "text-white"}`}>切换语言</a>
+      </MenuHandler>
+      <MenuList>
+        <MenuItem onClick={() => switchLanguage('zh')}>中文</MenuItem>
+        <MenuItem onClick={() => switchLanguage('en')}>English</MenuItem>
+      </MenuList>
+    </Menu>
         </div>
         <IconButton
           variant="text"
@@ -153,16 +145,9 @@ export function Navbar({ NAV_MENU }: any) {
             ))}
           </ul>
           <div className="mt-6 flex items-center gap-4">
-            <a onClick={() => changeLanguage()} >
-              {language === "en" ? "中文" : "English"}
+            <a onClick={() => switchLanguage()} >
+              {locale === "en" ? "中文" : "English"}
             </a>
-
-            <SignedOut>
-              <SignInButton />
-            </SignedOut>
-            <SignedIn>
-              <UserButton />
-            </SignedIn>
           </div>
         </div>
       </Collapse>

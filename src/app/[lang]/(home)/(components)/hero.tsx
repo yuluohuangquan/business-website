@@ -3,7 +3,7 @@
 import { IconButton, Button, Typography } from "@material-tailwind/react";
 import { PlayIcon } from "@heroicons/react/24/solid";
 
-function Hero() {
+export function Hero() {
   return (
     <div className="relative min-h-screen w-full bg-[url('/image/event.jpeg')] bg-cover bg-no-repeat">
     <div className="absolute inset-0 h-full w-full bg-gray-900/60" />
