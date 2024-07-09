@@ -6,6 +6,11 @@ export const defaultLocale = 'en';
 
 export const locales = ['en', 'zh'] as const;
 
+export const localObject = {
+    en: 'English',
+    zh: '中文'
+};
+
 export const pathnames = {
     '/': '/',
 };

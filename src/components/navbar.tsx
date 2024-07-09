@@ -22,6 +22,7 @@ import {
 } from "@heroicons/react/24/solid";
 import { usePathname, useRouter } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
+import { localObject } from "@/navigation";
 
 interface NavItemProps {
   children: React.ReactNode;
@@ -78,9 +79,6 @@ export function Navbar({ NAV_MENU }: any) {
 
 
   const switchLanguage = (newLocale) => {
-    // 在客户端更改语言，这将导致页面重新加载并使用新的语言
-    console.log('switchLanguage', pathname);
-
     router.push(pathname.replace(`/${locale}`, `/${newLocale}`));
   };
 
@@ -97,7 +95,7 @@ export function Navbar({ NAV_MENU }: any) {
           color={isScrolling ? "blue-gray" : "white"}
           className="text-lg font-bold"
         >
-          Material Tailwind
+          WBG
         </Typography>
         <ul
           className={`ml-10 hidden items-center gap-6 lg:flex ${isScrolling ? "text-gray-900" : "text-white"
@@ -113,7 +111,7 @@ export function Navbar({ NAV_MENU }: any) {
         <div className="hidden items-center gap-4 lg:flex">
         <Menu>
       <MenuHandler>
-        <a className={`cursor-pointer ${isScrolling ? "text-gray-900" : "text-white"}`}>切换语言</a>
+        <a className={`cursor-pointer ${isScrolling ? "text-gray-900" : "text-white"}`}>{localObject[locale]}</a>
       </MenuHandler>
       <MenuList>
         <MenuItem onClick={() => switchLanguage('zh')}>中文</MenuItem>
@@ -145,9 +143,9 @@ export function Navbar({ NAV_MENU }: any) {
             ))}
           </ul>
           <div className="mt-6 flex items-center gap-4">
-            <a onClick={() => switchLanguage()} >
+            {/* <a onClick={() => switchLanguage()} >
               {locale === "en" ? "中文" : "English"}
-            </a>
+            </a> */}
           </div>
         </div>
       </Collapse>
