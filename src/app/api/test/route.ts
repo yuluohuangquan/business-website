@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server"
 
 import { addTest } from "@/server/front/action/test";
-export async function handler(request) {
+async function handler(request) {
     const params = await request.json();
 
     console.log(params);
