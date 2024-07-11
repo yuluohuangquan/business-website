@@ -17,7 +17,7 @@ export function SponsoredBy() {
     <section className="py-8 px-8 lg:py-20">
       <div className="container mx-auto text-center">
         <Typography variant="h6" color="blue-gray" className="mb-8">
-          SPONSORED BY
+          为他们提供过服务
         </Typography>
         <div className="flex flex-wrap items-center justify-center gap-6">
           {SPONSORS.map((logo, key) => (

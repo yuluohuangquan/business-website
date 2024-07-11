@@ -4,7 +4,7 @@ import {
 
 export const defaultLocale = 'en';
 
-export const locales = ['en', 'zh'] as const;
+export const locales = ['en', 'zh'];
 
 export const localObject = {
     en: 'English',

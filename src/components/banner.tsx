@@ -1,4 +1,4 @@
-import { Carousel, Button } from "@material-tailwind/react";
+import { Carousel, Button, Typography } from "@material-tailwind/react";
 
 export function Banner() {
   return (
@@ -24,9 +24,14 @@ export function Banner() {
           className="h-screen w-full object-cover"
         />
         <div className="pl-[20%] w-full text-white absolute top-1/3">
-        <p className="text-3xl">标题</p>
-        <p className="text-xl mt-16 mb-16">描述</p>
-        <Button color="white" size="sm" className="rounded-none">
+        <Typography variant="h2" color="white" className="lg:max-w-3xl">
+        欢迎您的访问
+        </Typography>
+        <Typography variant="h4" color="white" className="mt-8 mb-12 lg:max-w-3xl">
+        10年服务经验积累，9种安全保障，8中服务场景，
+        <br></br>优质服务值得您的信赖
+        </Typography>
+        <Button color="white" size="sm" className="rounded-sm">
           了解详情
         </Button>
         </div>

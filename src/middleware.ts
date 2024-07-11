@@ -5,6 +5,7 @@ const intlMiddleware = createMiddleware({
   defaultLocale,
   pathnames,
   locales,
+  localeDetection: false
 });
 
 // 创建一个中间件函数，它会跳过对 /api/ 的请求
@@ -16,5 +17,5 @@ export default function middleware(req, res, next) {
 }
 
 export const config = {
-  matcher: ["/((?!.*\\..*|_next).*)", "/", "/((?!api|_next|.*\\..*).*)", '/(zh|en)/:path*'],
+  matcher: ["/((?!.*\\..*|_next).*)", "/", "/((?!api|_next|.*\\..*).*)", '/(en|zh)/:path*'],
 };

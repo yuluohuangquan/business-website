@@ -1,5 +1,4 @@
 
-export * from "./hero";
 export * from "./our-stats";
 export * from "./about-event";
 export * from "./faq";
