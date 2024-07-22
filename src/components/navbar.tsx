@@ -35,7 +35,7 @@ function NavItem({ children, href }: NavItemProps) {
       <Typography
         as="a"
         href={href || "#"}
-        target={href ? "_blank" : "_self"}
+        target={"_self"}
         variant="paragraph"
         className="flex items-center gap-2 font-medium"
       >

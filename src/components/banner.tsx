@@ -24,14 +24,14 @@ export function Banner() {
           className="h-screen w-full object-cover"
         />
         <div className="pl-[20%] w-full text-white absolute top-1/3">
-        <Typography variant="h2" color="white" className="lg:max-w-3xl">
+        <Typography variant="h2" color="white" className="mb-4 text-3xl md:text-4xl lg:text-5xl">
         欢迎您的访问
         </Typography>
-        <Typography variant="h4" color="white" className="mt-8 mb-12 lg:max-w-3xl">
+        <Typography variant="h4" color="white" className="mt-8 mb-12 opacity-80">
         10年服务经验积累，9种安全保障，8中服务场景，
         <br></br>优质服务值得您的信赖
         </Typography>
-        <Button color="white" size="sm" className="rounded-sm">
+        <Button color="white" size="lg">
           了解详情
         </Button>
         </div>

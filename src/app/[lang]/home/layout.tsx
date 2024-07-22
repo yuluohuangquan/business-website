@@ -5,7 +5,8 @@ import { Navbar, Footer } from "@/components";
 import {
   RectangleStackIcon,
   UserCircleIcon,
-  CommandLineIcon,
+  PhoneIcon,
+  BriefcaseIcon
 } from "@heroicons/react/24/solid";
 
 type Props = {
@@ -14,24 +15,24 @@ type Props = {
 
 const NAV_MENU = [
   {
-    name: "解决方案",
-    icon: RectangleStackIcon,
+    name: "产品",
+    icon: BriefcaseIcon,
+    href: "/product"
   },
   {
-    name: "产品手册",
-    icon: UserCircleIcon,
+    name: "解决方案",
+    icon: RectangleStackIcon,
+    href: "/solutions"
   },
   {
     name: "关于我们",
-    icon: CommandLineIcon,
-  },
-  {
-    name: "人才招募",
-    icon: CommandLineIcon,
+    icon: UserCircleIcon,
+    href: "/solutions"
   },
   {
     name: "联系我们",
-    icon: CommandLineIcon,
+    icon: PhoneIcon,
+    href: "/aboutus"
   },
 ];
 

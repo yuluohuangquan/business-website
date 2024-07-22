@@ -8,4 +8,6 @@ export * from "./stats-card";
 export * from "./event-content-card";
 export * from "./banner";
 export * from "./title";
+export * from "./swiper/slidesPer";
+export * from "./galleryWithTab";
 
