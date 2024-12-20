@@ -1,39 +1,53 @@
-import type { Metadata } from "next";
-import localFont from "next/font/local";
-import { Layout } from "@/components";
-import { NextIntlClientProvider } from "next-intl";
-import { getMessages } from 'next-intl/server';
+"use client"
+import { ReactNode } from 'react';
+import { Navbar, Footer } from "@/components";
 
-const myFont = localFont({
-  src: "../../style/font/OpenSans-Regular.ttf",
-  display: "swap",
-});
+import {
+  RectangleStackIcon,
+  UserCircleIcon,
+  PhoneIcon,
+  BriefcaseIcon,
+  UserGroupIcon
+} from "@heroicons/react/24/solid";
 
-export const metadata: Metadata = {
-  title: "NextJS Tailwind Event Landing Page",
-  description:
-    "Introducing Tailwind Event Landing Page, a dynamic and visually appealing landing page template designed using Tailwind CSS and Material Tailwind.",
+type Props = {
+  children: ReactNode;
 };
 
-export default async function RootLayout({
-  children,
-  params: { lang }
-}: {
-  children: React.ReactNode;
-  params: { lang: string }
-}) {
-  const messages = await getMessages();
+const NAV_MENU = [
+  {
+    name: "产品",
+    icon: BriefcaseIcon,
+    href: "/product"
+  },
+  {
+    name: "解决方案",
+    icon: RectangleStackIcon,
+    href: "/solutions"
+  },
+  {
+    name: "关于我们",
+    icon: UserCircleIcon,
+    href: "/aboutus"
+  },
+  {
+    name: "联系我们",
+    icon: PhoneIcon,
+    href: "/connactus"
+  },
+  {
+    name: "人才招聘",
+    icon: UserGroupIcon,
+    href: "/recruitment"
+  },
+];
 
-  return (
-    <html lang={lang}>
-      <head>
-        <link rel="shortcut icon" href="/favicon.png" type="image/png" />
-      </head>
-      <body className={myFont.className}>
-        <NextIntlClientProvider messages={messages}>
-          <Layout>{children}</Layout>
-        </NextIntlClientProvider>
-      </body>
-    </html>
-  );
+export default function RootLayout({ children }: Props) {
+  return <>
+     <Navbar NAV_MENU={NAV_MENU} />
+     <div className='min-h-[calc(100vh-320px)] pt-[60px]'>
+      {children}
+     </div>
+     <Footer />
+  </>;
 }

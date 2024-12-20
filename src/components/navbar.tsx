@@ -51,7 +51,7 @@ export function Navbar({ NAV_MENU }: any) {
   const pathname = usePathname();
 
   const [open, setOpen] = useState(false);
-  const [isScrolling, setIsScrolling] = useState(false);
+  const [isScrolling, setIsScrolling] = useState(true);
   const locale = useLocale(); // 获取当前语言
 
   const handleOpen = () => setOpen((cur) => !cur);
@@ -68,7 +68,7 @@ export function Navbar({ NAV_MENU }: any) {
       if (window.scrollY > 0) {
         setIsScrolling(true);
       } else {
-        setIsScrolling(false);
+        setIsScrolling(true);
       }
     }
 
@@ -77,6 +77,29 @@ export function Navbar({ NAV_MENU }: any) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    // 初始化时检查当前页面背景
+    checkBackground();
+
+    function checkBackground() {
+      // 获取页面主体背景色
+      const bodyBg = window.getComputedStyle(document.body).backgroundColor;
+      // 将RGB转换为亮度值
+      const rgb = bodyBg.match(/\d+/g);
+      if (rgb) {
+        const brightness = (parseInt(rgb[0]) * 299 + parseInt(rgb[1]) * 587 + parseInt(rgb[2]) * 114) / 1000;
+      }
+    }
+
+    // 监听页面变化
+    const observer = new MutationObserver(checkBackground);
+    observer.observe(document.body, {
+      attributes: true,
+      attributeFilter: ['class', 'style']
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   const switchLanguage = (newLocale) => {
     router.push(pathname.replace(`/${locale}`, `/${newLocale}`));
@@ -88,7 +111,9 @@ export function Navbar({ NAV_MENU }: any) {
       fullWidth
       blurred={false}
       color={isScrolling ? "white" : "transparent"}
-      className="fixed top-0 z-50 border-0"
+      className={`fixed top-0 z-50 border-0 ${
+        !isScrolling ? "bg-white/80 backdrop-blur-sm" : ""
+      }`}
     >
       <div className="container mx-auto flex items-center justify-between">
         <Typography
@@ -98,8 +123,9 @@ export function Navbar({ NAV_MENU }: any) {
           WBG
         </Typography>
         <ul
-          className={`ml-10 hidden items-center gap-6 lg:flex ${isScrolling ? "text-gray-900" : "text-white"
-            }`}
+          className={`ml-10 hidden items-center gap-6 lg:flex ${
+            isScrolling ? "text-gray-900" : "text-white"
+          }`}
         >
           {NAV_MENU.map(({ name, icon: Icon, href }) => (
             <NavItem key={name} href={href}>
@@ -109,15 +135,19 @@ export function Navbar({ NAV_MENU }: any) {
           ))}
         </ul>
         <div className="hidden items-center gap-4 lg:flex">
-        <Menu>
-      <MenuHandler>
-        <a className={`cursor-pointer ${isScrolling ? "text-gray-900" : "text-white"}`}>{localObject[locale]}</a>
-      </MenuHandler>
-      <MenuList>
-        <MenuItem onClick={() => switchLanguage('zh')}>中文</MenuItem>
-        <MenuItem onClick={() => switchLanguage('en')}>English</MenuItem>
-      </MenuList>
-    </Menu>
+          <Menu>
+            <MenuHandler>
+              <a className={`cursor-pointer ${
+                isScrolling ? "text-gray-900" : "text-white"
+              }`}>
+                {localObject[locale]}
+              </a>
+            </MenuHandler>
+            <MenuList>
+              <MenuItem onClick={() => switchLanguage('zh')}>中文</MenuItem>
+              <MenuItem onClick={() => switchLanguage('en')}>English</MenuItem>
+            </MenuList>
+          </Menu>
         </div>
         <IconButton
           variant="text"
