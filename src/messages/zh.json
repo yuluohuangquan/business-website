@@ -1,0 +1,30 @@
+{
+  "Recruitment": {
+    "joinUs": "加入我们",
+    "subtitle": "在北京涡控科技，我们提供广阔的发展平台和优秀的团队氛围，期待您的加入",
+    "contactUs": "联系我们",
+    "phone": "电话",
+    "close": "关闭",
+    "all": "全部",
+    "tech": "技术部门",
+    "product": "产品部门",
+    "marketing": "市场部门",
+    "operations": "运营部门",
+    "requirementsLabel": "任职要求",
+    "apply": "申请职位",
+    "jobs": {
+      "frontend": {
+        "title": "前端开发工程师",
+        "location": "北京",
+        "type": "全职",
+        "requirements": "本科及以上学历，计算机相关专业|熟练掌握HTML、CSS、JavaScript等前端技术|具有React/Vue等框架使用经验|良好的团队协作能力"
+      },
+      "pm": {
+        "title": "产品经理",
+        "location": "北京",
+        "type": "全职",
+        "requirements": "本科及以上学历，3年以上相关工作经验|优秀的沟通能力和项目管理能力|熟悉产品开发流程|有流体控制或相关行业经验优先"
+      }
+    }
+  }
+} 

@@ -1,0 +1,30 @@
+{
+  "Recruitment": {
+    "joinUs": "Join Our Team",
+    "subtitle": "At Whcon Technology, we offer a broad platform for development and an excellent team atmosphere",
+    "contactUs": "Contact Us",
+    "phone": "Phone",
+    "close": "Close",
+    "all": "All",
+    "tech": "Technical",
+    "product": "Product",
+    "marketing": "Marketing",
+    "operations": "Operations",
+    "requirementsLabel": "Requirements",
+    "apply": "Apply Now",
+    "jobs": {
+      "frontend": {
+        "title": "Frontend Developer",
+        "location": "Beijing",
+        "type": "Full-time",
+        "requirements": "Bachelor's degree or above in Computer Science or related field|Proficient in HTML, CSS, JavaScript and other frontend technologies|Experience with React/Vue frameworks|Good teamwork abilities"
+      },
+      "pm": {
+        "title": "Product Manager",
+        "location": "Beijing",
+        "type": "Full-time",
+        "requirements": "Bachelor's degree or above, with 3+ years of relevant experience|Excellent communication and project management skills|Familiar with product development process|Experience in fluid control or related industries preferred"
+      }
+    }
+  }
+} 

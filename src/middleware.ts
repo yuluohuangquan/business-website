@@ -9,9 +9,9 @@ const intlMiddleware = createMiddleware({
 });
 
 // 创建一个中间件函数，它会跳过对 /api/ 的请求
-export default function middleware(req, res, next) {
+export default function middleware(req) {
   if (req.nextUrl.pathname.startsWith('/api/')) {
-    return next(); // 直接传递给下一个中间件或路由处理器
+    return; // 直接传递给下一个中间件或路由处理器
   }
   return intlMiddleware(req);
 }

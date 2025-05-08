@@ -1,6 +1,9 @@
 'use client';
 
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { Bars3Icon, XMarkIcon, ChevronDownIcon, LanguageIcon } from "@heroicons/react/24/outline";
 import {
   Navbar as MTNavbar,
   Collapse,
@@ -17,12 +20,10 @@ import {
   UserCircleIcon,
   CommandLineIcon,
   Squares2X2Icon,
-  XMarkIcon,
-  Bars3Icon,
 } from "@heroicons/react/24/solid";
 import { usePathname, useRouter } from 'next/navigation';
-import { useLocale, useTranslations } from 'next-intl';
-import { localObject } from "@/navigation";
+import { useLocale } from 'next-intl';
+import { NAV_MENU, NavMenuItem } from "@/utils/constant";
 
 interface NavItemProps {
   children: React.ReactNode;
@@ -45,141 +46,235 @@ function NavItem({ children, href }: NavItemProps) {
   );
 }
 
+interface NavMenuType {
+  name: string;
+  icon: any;
+  href: string;
+}
 
-export function Navbar({ NAV_MENU }: any) {
+interface NavbarProps {
+  NAV_MENU: NavMenuType[];
+}
+
+export function Navbar() {
   const router = useRouter();
   const pathname = usePathname();
-
-  const [open, setOpen] = useState(false);
-  const [isScrolling, setIsScrolling] = useState(true);
   const locale = useLocale(); // 获取当前语言
 
-  const handleOpen = () => setOpen((cur) => !cur);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<number | null>(null);
+  const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
 
   useEffect(() => {
-    window.addEventListener(
-      "resize",
-      () => window.innerWidth >= 960 && setOpen(false)
-    );
-  }, []);
-
-  useEffect(() => {
-    function handleScroll() {
-      if (window.scrollY > 0) {
-        setIsScrolling(true);
-      } else {
-        setIsScrolling(true);
-      }
-    }
-
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    
     window.addEventListener("scroll", handleScroll);
-
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => {
-    // 初始化时检查当前页面背景
-    checkBackground();
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
-    function checkBackground() {
-      // 获取页面主体背景色
-      const bodyBg = window.getComputedStyle(document.body).backgroundColor;
-      // 将RGB转换为亮度值
-      const rgb = bodyBg.match(/\d+/g);
-      if (rgb) {
-        const brightness = (parseInt(rgb[0]) * 299 + parseInt(rgb[1]) * 587 + parseInt(rgb[2]) * 114) / 1000;
-      }
-    }
+  const toggleLangMenu = () => {
+    setIsLangMenuOpen(!isLangMenuOpen);
+  };
 
-    // 监听页面变化
-    const observer = new MutationObserver(checkBackground);
-    observer.observe(document.body, {
-      attributes: true,
-      attributeFilter: ['class', 'style']
-    });
-
-    return () => observer.disconnect();
-  }, []);
-
-  const switchLanguage = (newLocale) => {
+  const switchLanguage = (newLocale: string) => {
     router.push(pathname.replace(`/${locale}`, `/${newLocale}`));
+    setIsLangMenuOpen(false);
+  };
+
+  const handleDropdownToggle = (index: number) => {
+    setActiveDropdown(activeDropdown === index ? null : index);
+  };
+
+  // 点击子菜单后关闭导航
+  const handleSubMenuClick = () => {
+    setIsMenuOpen(false);
+    setActiveDropdown(null);
+  };
+
+  // 检查菜单项是否有子菜单
+  const hasSubMenus = (item: NavMenuItem): boolean => {
+    return Boolean(item.subMenus && item.subMenus.length > 0);
   };
 
   return (
-    <MTNavbar
-      shadow={false}
-      fullWidth
-      blurred={false}
-      color={isScrolling ? "white" : "transparent"}
-      className={`fixed top-0 z-50 border-0 ${
-        !isScrolling ? "bg-white/80 backdrop-blur-sm" : ""
-      }`}
-    >
-      <div className="container mx-auto flex items-center justify-between">
-        <Typography
-          color={isScrolling ? "blue-gray" : "white"}
-          className="text-lg font-bold"
-        >
-          WBG
-        </Typography>
-        <ul
-          className={`ml-10 hidden items-center gap-6 lg:flex ${
-            isScrolling ? "text-gray-900" : "text-white"
-          }`}
-        >
-          {NAV_MENU.map(({ name, icon: Icon, href }) => (
-            <NavItem key={name} href={href}>
-              <Icon className="h-5 w-5" />
-              <span>{name}</span>
-            </NavItem>
-          ))}
-        </ul>
-        <div className="hidden items-center gap-4 lg:flex">
-          <Menu>
-            <MenuHandler>
-              <a className={`cursor-pointer ${
-                isScrolling ? "text-gray-900" : "text-white"
-              }`}>
-                {localObject[locale]}
-              </a>
-            </MenuHandler>
-            <MenuList>
-              <MenuItem onClick={() => switchLanguage('zh')}>中文</MenuItem>
-              <MenuItem onClick={() => switchLanguage('en')}>English</MenuItem>
-            </MenuList>
-          </Menu>
-        </div>
-        <IconButton
-          variant="text"
-          color={isScrolling ? "gray" : "white"}
-          onClick={handleOpen}
-          className="ml-auto inline-block lg:hidden"
-        >
-          {open ? (
-            <XMarkIcon strokeWidth={2} className="h-6 w-6" />
-          ) : (
-            <Bars3Icon strokeWidth={2} className="h-6 w-6" />
-          )}
-        </IconButton>
-      </div>
-      <Collapse open={open}>
-        <div className="container mx-auto mt-4 rounded-lg bg-white px-6 py-5">
-          <ul className="flex flex-col gap-4 text-gray-900">
-            {NAV_MENU.map(({ name, icon: Icon, href }) => (
-              <NavItem key={name} href={href}>
-                <Icon className="h-5 w-5" />
-                {name}
-              </NavItem>
-            ))}
-          </ul>
-          <div className="mt-6 flex items-center gap-4">
-            {/* <a onClick={() => switchLanguage()} >
-              {locale === "en" ? "中文" : "English"}
-            </a> */}
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "bg-white shadow-md" : "bg-white bg-opacity-95"}`}>
+      <div className="container mx-auto px-4">
+        <div className="flex justify-between items-center h-16">
+          {/* Logo */}
+          <div className="flex-shrink-0">
+            <Link href="/" className="flex items-center">
+              <span className="text-2xl font-bold text-blue-600">万博集科技</span>
+            </Link>
+          </div>
+
+          {/* Desktop Menu */}
+          <div className="hidden md:flex md:items-center">
+            <div className="flex space-x-1">
+              {NAV_MENU.map((item, index) => (
+                <div key={item.id} className="relative group">
+                  <Link
+                    href={item.href}
+                    className="px-3 py-2 text-gray-800 hover:text-blue-600 rounded-md text-base font-medium transition-colors flex items-center"
+                  >
+                    {item.name}
+                    {hasSubMenus(item) && (
+                      <ChevronDownIcon className="h-4 w-4 ml-1" />
+                    )}
+                  </Link>
+                  
+                  {/* 子菜单 - PC端用悬停显示 */}
+                  {hasSubMenus(item) && (
+                    <div className="absolute left-0 mt-0 w-48 bg-white shadow-lg rounded-b-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top z-10">
+                      <div className="py-1">
+                        {item.subMenus!.map((subItem, subIndex) => (
+                          <Link
+                            key={subIndex}
+                            href={subItem.href}
+                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600"
+                          >
+                            {subItem.name}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+
+            {/* 语言切换 - PC端 */}
+            <div className="relative ml-6">
+              <button 
+                onClick={toggleLangMenu}
+                className="flex items-center text-gray-800 hover:text-blue-600 px-3 py-2 rounded-md text-base font-medium"
+              >
+                <LanguageIcon className="h-5 w-5 mr-1" />
+                <span>{locale === 'zh' ? '中文' : 'English'}</span>
+                <ChevronDownIcon className="h-4 w-4 ml-1" />
+              </button>
+
+              {isLangMenuOpen && (
+                <div className="absolute right-0 mt-1 w-32 bg-white shadow-lg rounded-md z-20">
+                  <div className="py-1">
+                    <button 
+                      onClick={() => switchLanguage('zh')}
+                      className={`block w-full text-left px-4 py-2 text-sm ${locale === 'zh' ? 'bg-blue-50 text-blue-600' : 'text-gray-700 hover:bg-blue-50 hover:text-blue-600'}`}
+                    >
+                      中文
+                    </button>
+                    <button 
+                      onClick={() => switchLanguage('en')}
+                      className={`block w-full text-left px-4 py-2 text-sm ${locale === 'en' ? 'bg-blue-50 text-blue-600' : 'text-gray-700 hover:bg-blue-50 hover:text-blue-600'}`}
+                    >
+                      English
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <div className="md:hidden flex items-center">
+            {/* 语言切换 - 移动端 */}
+            <button
+              onClick={toggleLangMenu}
+              className="p-2 mr-2 text-gray-700 hover:text-blue-600 focus:outline-none"
+              aria-label="切换语言"
+            >
+              <LanguageIcon className="h-6 w-6" />
+            </button>
+
+            <button
+              onClick={toggleMenu}
+              className="p-2 text-gray-700 hover:text-blue-600 focus:outline-none"
+              aria-label="打开菜单"
+            >
+              {isMenuOpen ? (
+                <XMarkIcon className="h-6 w-6" />
+              ) : (
+                <Bars3Icon className="h-6 w-6" />
+              )}
+            </button>
           </div>
         </div>
-      </Collapse>
-    </MTNavbar>
+      </div>
+
+      {/* 移动端语言菜单 */}
+      {isLangMenuOpen && (
+        <div className="md:hidden bg-white border-t border-gray-200 shadow-lg">
+          <div className="container mx-auto px-4 py-2">
+            <button 
+              onClick={() => switchLanguage('zh')}
+              className={`block w-full text-left px-4 py-3 ${locale === 'zh' ? 'bg-blue-50 text-blue-600' : 'text-gray-700'} border-b border-gray-100`}
+            >
+              中文
+            </button>
+            <button 
+              onClick={() => switchLanguage('en')}
+              className={`block w-full text-left px-4 py-3 ${locale === 'en' ? 'bg-blue-50 text-blue-600' : 'text-gray-700'}`}
+            >
+              English
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Mobile Menu */}
+      {isMenuOpen && (
+        <div className="md:hidden bg-white border-t border-gray-200 shadow-lg">
+          <div className="container mx-auto px-4 py-2">
+            {NAV_MENU.map((item, index) => (
+              <div key={item.id} className="border-b border-gray-100 last:border-b-0">
+                <div className="flex justify-between items-center">
+                  <Link
+                    href={item.href}
+                    className="py-3 block text-gray-800 font-medium"
+                    onClick={() => !hasSubMenus(item) && setIsMenuOpen(false)}
+                  >
+                    {item.name}
+                  </Link>
+                  {hasSubMenus(item) && (
+                    <button
+                      className="p-2 text-gray-500"
+                      onClick={() => handleDropdownToggle(index)}
+                      aria-label={`展开${item.name}子菜单`}
+                    >
+                      <ChevronDownIcon 
+                        className={`h-5 w-5 transition-transform duration-200 ${activeDropdown === index ? 'rotate-180' : ''}`} 
+                      />
+                    </button>
+                  )}
+                </div>
+
+                {/* 子菜单 - 移动端用点击切换显示 */}
+                {hasSubMenus(item) && activeDropdown === index && (
+                  <div className="pl-4 pb-2">
+                    {item.subMenus!.map((subItem, subIndex) => (
+                      <Link
+                        key={subIndex}
+                        href={subItem.href}
+                        className="block py-2 text-gray-600 hover:text-blue-600"
+                        onClick={handleSubMenuClick}
+                      >
+                        {subItem.name}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </nav>
   );
 }
 
