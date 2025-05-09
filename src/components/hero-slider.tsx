@@ -29,7 +29,7 @@ export function HeroSlider() {
       title: "减振及流体控制专家",
       description: "致力于创造和供应创新高效节能的产品",
       buttonText: "了解更多",
-      buttonLink: "/aboutus"
+      buttonLink: "/about"
     },
     {
       id: 2,

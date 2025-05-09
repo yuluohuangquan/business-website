@@ -112,7 +112,7 @@ export default function Page() {
       </section>
 
       {/* Service Center Section */}
-      <section className="py-16 bg-gray-50">
+      {/* <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-2">服务中心</h2>
@@ -164,10 +164,10 @@ export default function Page() {
             </motion.div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* News Section */}
-      <section className="py-16 container mx-auto px-4">
+      {/* <section className="py-16 container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold mb-2">资讯动态</h2>
           <div className="w-20 h-1 bg-blue-500 mx-auto"></div>
@@ -205,7 +205,7 @@ export default function Page() {
             更多动态
           </Link>
         </div>
-      </section>
+      </section> */}
 
       {/* About Section */}
       <section className="py-16 bg-gray-50">
@@ -232,7 +232,7 @@ export default function Page() {
               <p className="text-lg leading-relaxed mb-8">
                 自公司创立以来，公司致力于供应高效节能产品，同时在减振领域持续创新。秉承创造卓越，公司获得了ISO9001,ISO14001,ISO18001等认证，以保证益于环境，无间服务，客户利益。
               </p>
-              <Link href="/aboutus" className="inline-block px-6 py-3 border border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white transition-colors rounded-md">
+              <Link href="/about" className="inline-block px-6 py-3 border border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white transition-colors rounded-md">
                 查看更多
               </Link>
             </div>
