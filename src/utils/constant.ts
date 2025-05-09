@@ -23,15 +23,15 @@ export const NAV_MENU: NavMenuItem[] = [
       { name: "公司愿景", href: "/about/vision" }
     ]
   },
-  {
+ {
     id: 2,
     name: "产品中心",
     href: "/product",
     subMenus: [
-      { name: "盖雷智阀", href: "/product/wa" },
-      { name: "JohnsonControls", href: "/product/johnsoncontrols" },
-      { name: "FlowCon", href: "/product/flowcon" },
-      { name: "WARCO", href: "/product/warco" }
+      { name: "盖雷智阀", href: "/product/list/wa" },
+      { name: "JohnsonControls", href: "/product/list/johnsoncontrols" },
+      { name: "FlowCon", href: "/product/list/flowcon" },
+      { name: "WARCO", href: "/product/list/warco" }
     ]
   },
   // {
@@ -59,3 +59,40 @@ export const NAV_MENU: NavMenuItem[] = [
     ]
   }
 ]; 
+
+// 产品子类别定义
+export const PRODUCT_CATEGORIES = {
+  wa: {
+    name: "盖雷智阀",
+    subCategories: [
+      { name: "闸阀", href: "/product/list/wa/valve" },
+      { name: "蝶阀", href: "/product/list/wa/butterfly" },
+      { name: "球阀", href: "/product/list/wa/ball" },
+      { name: "截止阀", href: "/product/list/wa/globe" }
+    ]
+  },
+  johnsoncontrols: {
+    name: "JohnsonControls",
+    subCategories: [
+      { name: "控制阀", href: "/product/list/johnsoncontrols/control" },
+      { name: "执行器", href: "/product/list/johnsoncontrols/actuator" },
+      { name: "传感器", href: "/product/list/johnsoncontrols/sensor" }
+    ]
+  },
+  flowcon: {
+    name: "FlowCon",
+    subCategories: [
+      { name: "平衡阀", href: "/product/list/flowcon/balance" },
+      { name: "压差控制阀", href: "/product/list/flowcon/pressure" },
+      { name: "温控阀", href: "/product/list/flowcon/temperature" }
+    ]
+  },
+  warco: {
+    name: "WARCO",
+    subCategories: [
+      { name: "减震器", href: "/product/list/warco/damper" },
+      { name: "隔振支架", href: "/product/list/warco/mount" },
+      { name: "弹簧减振器", href: "/product/list/warco/spring" }
+    ]
+  }
+};
