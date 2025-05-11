@@ -130,7 +130,7 @@ export default function RecruitmentPage() {
             <h2 className="text-3xl font-bold text-gray-900 mb-4">关于我们</h2>
             <div className="w-20 h-1 bg-blue-600 mx-auto mb-6"></div>
             <p className="max-w-3xl mx-auto text-lg text-gray-600">
-              北京涡控科技有限公司是减振及流体控制产品的专业供应商，致力于创造和供应创新高效节能的产品，满足客户利益以及市场快速变化的需求。我们重视人才的发展，期待与您共同成长。
+              上海万博集科技有限公司是减振及流体控制产品的专业供应商，致力于创造和供应创新高效节能的产品，满足客户利益以及市场快速变化的需求。我们重视人才的发展，期待与您共同成长。
             </p>
           </div>
 
@@ -147,7 +147,7 @@ export default function RecruitmentPage() {
             <div className="md:w-1/2">
               <h3 className="text-2xl font-bold text-gray-900 mb-4">我们的企业文化</h3>
               <p className="text-lg text-gray-600 mb-6">
-                在北京涡控，我们秉承&ldquo;创造卓越&rdquo;的理念，追求产品质量和客户满意度的不断提升。我们拥有一支专业的国际化团队，为客户提供最优质的服务和解决方案。
+                在上海万博集，我们秉承&ldquo;创造卓越&rdquo;的理念，追求产品质量和客户满意度的不断提升。我们拥有一支专业的国际化团队，为客户提供最优质的服务和解决方案。
               </p>
               <p className="text-lg text-gray-600">
                 我们为员工提供开放、平等、协作的工作环境，鼓励创新和自我发展。加入我们，您将有机会参与国际领先的项目，展示您的才华和潜力。
@@ -300,7 +300,7 @@ export default function RecruitmentPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold mb-6">加入我们，共创未来</h2>
           <p className="text-xl opacity-90 max-w-3xl mx-auto mb-8">
-            我们期待与有才华、有激情的您一起成长，一起将北京涡控打造成行业的领导者
+            我们期待与有才华、有激情的您一起成长，一起将上海万博集打造成行业的领导者
           </p>
           <button 
             onClick={() => setShowContact(true)}

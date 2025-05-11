@@ -7,7 +7,6 @@ export * from "./about-card";
 export * from "./stats-card";
 export * from "./event-content-card";
 export * from "./banner";
-export * from "./swiper/slidesPer";
 export * from "./hero-slider";
 
 export { Navbar } from "./navbar";

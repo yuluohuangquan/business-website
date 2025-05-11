@@ -62,7 +62,7 @@ export function Footer() {
             </div>
 
             {/* 新闻资讯 */}
-            <div>
+            <div className="hidden md:block opacity-0">
               <h3 className="text-lg font-semibold mb-3 text-gray-300">新闻资讯</h3>
               <ul className="space-y-2">
                 <li>

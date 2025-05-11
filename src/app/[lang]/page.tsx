@@ -12,28 +12,28 @@ export default function Page() {
       name: "涡控",
       description: "Warco品牌1960年创立于美国，是北美减振材料技术和流体密封技术的掌握者，60多年来将精湛的材料知识和经验应用于工程流体系统和流程工业系统。",
       link: "/product/warco",
-      image: "https://picsum.photos/200/120"
+      image: "/images/home/brand1.png"
     },
     {
       id: 2,
       name: "阀罗坎",
       description: "源自丹麦的平衡阀技术领先者，在美国加州和丹麦设有工厂，是动态平衡阀和动态平衡电动调节阀的发明者，理念： 节约能耗 、智能化控制、节省成本、技术领先。",
       link: "/product/flowcon",
-      image: "https://picsum.photos/200/120"
+      image: "/images/home/brand2.jpg"
     },
     {
       id: 3,
       name: "江森自控",
       description: "江森是全球关键环境建筑控制一体式解决方案提供商；从暖通空调、楼宇自控、能源管理、关键环境控制、安全防范到消防报警，江森自控拥有业内值得信赖的品牌。",
       link: "/product/johnson-controls",
-      image: "https://picsum.photos/200/120"
+      image: "/images/home/brand3.jpg"
     },
     {
       id: 4,
       name: "盖雷|盖雷智阀",
       description: "盖雷是领先的流体控制供应商，现隶属于奥赛阀门集团，服务了超过100座大型数据中心和大型商业综合体及酒店,致力于更加节能的流体控制，遵循高品质及服务。",
       link: "/product/wa",
-      image: "https://picsum.photos/200/120"
+      image: "/images/home/brand4.jpg"
     }
   ];
 
@@ -62,14 +62,18 @@ export default function Page() {
   ];
 
   const clients = [
-    { id: 1, image: "https://picsum.photos/150/80" },
-    { id: 2, image: "https://picsum.photos/150/80" },
-    { id: 3, image: "https://picsum.photos/150/80" },
-    { id: 4, image: "https://picsum.photos/150/80" },
-    { id: 5, image: "https://picsum.photos/150/80" },
-    { id: 6, image: "https://picsum.photos/150/80" },
-    { id: 7, image: "https://picsum.photos/150/80" },
-    { id: 8, image: "https://picsum.photos/150/80" }
+    { id: 1, image: "/images/home/client1.png" }, 
+    { id: 2, image: "/images/home/client2.png" },
+    { id: 3, image: "/images/home/client3.png" },
+    { id: 4, image: "/images/home/client4.png" },
+    { id: 5, image: "/images/home/client5.png" },
+    { id: 6, image: "/images/home/client6.png" },
+    { id: 7, image: "/images/home/client7.png" },
+    { id: 8, image: "/images/home/client8.png" },
+    { id: 9, image: "/images/home/client9.png" },
+    { id: 10, image: "/images/home/client10.png" },
+    { id: 11, image: "/images/home/client11.png" },
+    { id: 12, image: "/images/home/client12.png" },
   ];
 
   // 添加表单状态管理
@@ -280,7 +284,7 @@ export default function Page() {
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-2">关于北京涡控</h2>
+            <h2 className="text-3xl font-bold mb-2">关于上海万博集</h2>
             <div className="w-20 h-1 bg-blue-500 mx-auto"></div>
           </div>
 
@@ -296,7 +300,7 @@ export default function Page() {
             </div>
             <div className="md:w-1/2">
               <p className="text-lg leading-relaxed mb-8">
-                北京涡控科技有限公司是减振及流体控制产品的供应商，致力于创造和供应创新高效节能的产品，满足客户利益以及市场快速变化的需求，业务覆盖水工业，节能产品及流体控制、减振降噪、气流管理等行业。
+                上海万博集科技有限公司是减振及流体控制产品的供应商，致力于创造和供应创新高效节能的产品，满足客户利益以及市场快速变化的需求，业务覆盖水工业，节能产品及流体控制、减振降噪、气流管理等行业。
               </p>
               <p className="text-lg leading-relaxed mb-8">
                 自公司创立以来，公司致力于供应高效节能产品，同时在减振领域持续创新。秉承创造卓越，公司获得了ISO9001,ISO14001,ISO18001等认证，以保证益于环境，无间服务，客户利益。
@@ -316,15 +320,15 @@ export default function Page() {
           <div className="w-20 h-1 bg-blue-500 mx-auto"></div>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-6xl mx-auto mb-12">
+        <div className="grid grid-cols-2 md:grid-cols-6 gap-8 max-w-6xl mx-auto mb-12">
           {clients.map((client) => (
-            <div key={client.id} className="flex items-center justify-center p-4 bg-white rounded-md shadow-sm">
+            <div key={client.id} className="flex items-center justify-center bg-white rounded-md shadow-sm border border-gray-200">
               <Image 
                 src={client.image} 
                 alt={`客户 ${client.id}`} 
                 width={150} 
                 height={80}
-                className="grayscale hover:grayscale-0 transition-all" 
+                className="transition-all hover:scale-110" 
               />
             </div>
           ))}
