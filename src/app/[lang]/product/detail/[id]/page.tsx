@@ -157,9 +157,13 @@ export default function ProductDetailPage() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phone: '',
     reason: '',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState('');
   const [activeTab, setActiveTab] = useState('specs');
   
   // 获取产品信息，如果不存在则使用默认ID "276"
@@ -171,11 +175,56 @@ export default function ProductDetailPage() {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
   
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('提交的表单数据:', formData);
-    alert('感谢您的咨询！我们将尽快与您联系。');
-    setShowContactForm(false);
+    setIsSubmitting(true);
+    setSubmitError('');
+    
+    try {
+      // 准备发送到API的数据
+      const emailData = {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone || '未提供',
+        reason: formData.reason || `咨询产品：${product.name}(${product.model})`,
+        details: `产品咨询 - ${product.name}(${product.model})\n\n${formData.message}`
+      };
+      
+      // 调用API发送邮件
+      const response = await fetch('/api/sendEmail', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(emailData),
+      });
+      
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || '提交失败，请稍后再试');
+      }
+      
+      // 显示成功消息
+      setSubmitSuccess(true);
+      
+      // 重置表单数据
+      setTimeout(() => {
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          reason: '',
+          message: ''
+        });
+        setSubmitSuccess(false);
+        setShowContactForm(false);
+      }, 3000);
+    } catch (error: any) {
+      console.error('提交表单时出错:', error);
+      setSubmitError(error.message || '提交失败，请稍后再试');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -419,72 +468,100 @@ export default function ProductDetailPage() {
               </button>
             </div>
             
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div>
-                <label htmlFor="name" className="block text-gray-700 text-sm font-medium mb-1">您的姓名</label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  required
-                  value={formData.name}
-                  onChange={handleInputChange}
-                  className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-1 focus:ring-blue-500"
-                />
+            {submitSuccess ? (
+              <div className="text-center py-8">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 text-green-500 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <h3 className="text-2xl font-bold text-gray-800 mb-2">提交成功</h3>
+                <p className="text-gray-600">感谢您的咨询，我们会尽快与您联系！</p>
               </div>
-              
-              <div>
-                <label htmlFor="email" className="block text-gray-700 text-sm font-medium mb-1">电子邮箱</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  required
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-1 focus:ring-blue-500"
-                />
-              </div>
-              
-              <div>
-                <label htmlFor="reason" className="block text-gray-700 text-sm font-medium mb-1">查询原因</label>
-                <select
-                  id="reason"
-                  name="reason"
-                  required
-                  value={formData.reason}
-                  onChange={handleInputChange}
-                  className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-1 focus:ring-blue-500"
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div>
+                  <label htmlFor="name" className="block text-gray-700 text-sm font-medium mb-1">您的姓名</label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    required
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                  />
+                </div>
+                
+                <div>
+                  <label htmlFor="email" className="block text-gray-700 text-sm font-medium mb-1">电子邮箱</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                  />
+                </div>
+                
+                <div>
+                  <label htmlFor="phone" className="block text-gray-700 text-sm font-medium mb-1">联系电话</label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                  />
+                </div>
+                
+                <div>
+                  <label htmlFor="reason" className="block text-gray-700 text-sm font-medium mb-1">查询原因</label>
+                  <select
+                    id="reason"
+                    name="reason"
+                    value={formData.reason}
+                    onChange={handleInputChange}
+                    className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                  >
+                    <option value="">请选择</option>
+                    <option value="产品询价">产品询价</option>
+                    <option value="技术咨询">技术咨询</option>
+                    <option value="合作代理">合作代理</option>
+                    <option value="其他">其他</option>
+                  </select>
+                </div>
+                
+                <div>
+                  <label htmlFor="message" className="block text-gray-700 text-sm font-medium mb-1">请求详情</label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    required
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    rows={4}
+                    className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                    placeholder="请详细描述您的需求..."
+                  ></textarea>
+                </div>
+                
+                {submitError && (
+                  <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-md">
+                    {submitError}
+                  </div>
+                )}
+                
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className={`w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
                 >
-                  <option value="">请选择</option>
-                  <option value="产品询价">产品询价</option>
-                  <option value="技术咨询">技术咨询</option>
-                  <option value="合作代理">合作代理</option>
-                  <option value="其他">其他</option>
-                </select>
-              </div>
-              
-              <div>
-                <label htmlFor="message" className="block text-gray-700 text-sm font-medium mb-1">请求详情</label>
-                <textarea
-                  id="message"
-                  name="message"
-                  required
-                  value={formData.message}
-                  onChange={handleInputChange}
-                  rows={4}
-                  className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-1 focus:ring-blue-500"
-                  placeholder="请详细描述您的需求..."
-                ></textarea>
-              </div>
-              
-              <button
-                type="submit"
-                className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors"
-              >
-                提交
-              </button>
-            </form>
+                  {isSubmitting ? '提交中...' : '提交'}
+                </button>
+              </form>
+            )}
           </motion.div>
         </div>
       )}

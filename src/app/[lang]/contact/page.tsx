@@ -48,6 +48,8 @@ export default function ContactPage() {
     details: ''
   });
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
   const [activeTab, setActiveTab] = useState('contact1');
   
   const contact1Ref = useRef<HTMLDivElement>(null);
@@ -76,23 +78,46 @@ export default function ContactPage() {
   };
 
   // 表单提交处理
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // 这里可以添加表单验证和提交逻辑
-    console.log('表单提交:', formData);
-    // 显示成功提交消息
-    setFormSubmitted(true);
-    // 重置表单数据
-    setTimeout(() => {
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        reason: '',
-        details: ''
+    setIsSubmitting(true);
+    setSubmitError('');
+    
+    try {
+      // 调用API发送邮件
+      const response = await fetch('/api/sendEmail', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
       });
-      setFormSubmitted(false);
-    }, 3000);
+      
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || '提交失败，请稍后再试');
+      }
+      
+      // 显示成功提交消息
+      setFormSubmitted(true);
+      
+      // 重置表单数据
+      setTimeout(() => {
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          reason: '',
+          details: ''
+        });
+        setFormSubmitted(false);
+      }, 5000);
+    } catch (error: any) {
+      console.error('提交表单时出错:', error);
+      setSubmitError(error.message || '提交失败，请稍后再试');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   // 切换标签页
@@ -119,7 +144,7 @@ export default function ContactPage() {
       </div>
 
       {/* 导航标签页 */}
-      <div className="bg-gray-100 py-4 shadow-sm sticky top-0 z-10" ref={contact1Ref} id="contact1" >
+      <div className="bg-gray-100 py-4 shadow-sm sticky top-0 z-10">
         <div className="container mx-auto px-4">
           <ul className="flex flex-wrap gap-8">
             <li>
@@ -143,7 +168,7 @@ export default function ContactPage() {
       </div>
 
       {/* 联系我们部分 */}
-      <section className="py-16">
+      <section ref={contact1Ref} id="contact1" className="py-16">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -319,12 +344,19 @@ export default function ContactPage() {
                     ></textarea>
                   </div>
                   
+                  {submitError && (
+                    <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-md">
+                      {submitError}
+                    </div>
+                  )}
+                  
                   <div>
                     <button
                       type="submit"
-                      className="w-full bg-blue-600 text-white py-3 px-4 rounded-md hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                      disabled={isSubmitting}
+                      className={`w-full bg-blue-600 text-white py-3 px-4 rounded-md hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
                     >
-                      提交
+                      {isSubmitting ? '提交中...' : '提交'}
                     </button>
                   </div>
                 </form>

@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { HeroSlider } from "@/components";
+import { useState } from "react";
 
 export default function Page() {
   const brands = [
@@ -70,6 +71,74 @@ export default function Page() {
     { id: 7, image: "https://picsum.photos/150/80" },
     { id: 8, image: "https://picsum.photos/150/80" }
   ];
+
+  // 添加表单状态管理
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState('');
+
+  // 处理表单输入
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  // 处理表单提交
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitError('');
+    
+    try {
+      // 准备发送到API的数据
+      const emailData = {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone || '未提供',
+        reason: '首页咨询',
+        details: formData.message
+      };
+      
+      // 调用API发送邮件
+      const response = await fetch('/api/sendEmail', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(emailData),
+      });
+      
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || '提交失败，请稍后再试');
+      }
+      
+      // 显示成功消息
+      setSubmitSuccess(true);
+      
+      // 重置表单数据
+      setTimeout(() => {
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          message: ''
+        });
+        setSubmitSuccess(false);
+      }, 5000);
+    } catch (error: any) {
+      console.error('提交表单时出错:', error);
+      setSubmitError(error.message || '提交失败，请稍后再试');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <div className="w-full">
@@ -307,52 +376,86 @@ export default function Page() {
             <div className="md:w-1/2">
               <div className="bg-gray-700 p-8 rounded-lg h-full">
                 <h3 className="text-xl font-bold mb-4">给我们留言</h3>
-                <form className="space-y-4">
-                  <div>
-                    <label className="block text-sm font-medium mb-1" htmlFor="name">姓名</label>
-                    <input 
-                      type="text" 
-                      id="name" 
-                      className="w-full px-4 py-2 rounded-md bg-gray-600 border border-gray-500 focus:outline-none focus:border-blue-500" 
-                      placeholder="您的姓名" 
-                    />
+                
+                {submitSuccess ? (
+                  <div className="text-center py-8">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 text-green-500 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <h3 className="text-2xl font-bold text-white mb-2">提交成功</h3>
+                    <p className="text-gray-300">感谢您的咨询，我们会尽快与您联系！</p>
                   </div>
-                  <div>
-                    <label className="block text-sm font-medium mb-1" htmlFor="email">邮箱</label>
-                    <input 
-                      type="email" 
-                      id="email" 
-                      className="w-full px-4 py-2 rounded-md bg-gray-600 border border-gray-500 focus:outline-none focus:border-blue-500" 
-                      placeholder="您的邮箱" 
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium mb-1" htmlFor="phone">电话</label>
-                    <input 
-                      type="tel" 
-                      id="phone" 
-                      className="w-full px-4 py-2 rounded-md bg-gray-600 border border-gray-500 focus:outline-none focus:border-blue-500" 
-                      placeholder="您的电话" 
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium mb-1" htmlFor="message">留言内容</label>
-                    <textarea 
-                      id="message" 
-                      rows={5} 
-                      className="w-full px-4 py-2 rounded-md bg-gray-600 border border-gray-500 focus:outline-none focus:border-blue-500" 
-                      placeholder="请输入您的留言内容" 
-                    ></textarea>
-                  </div>
-                  <div>
-                    <button 
-                      type="submit" 
-                      className="w-full py-3 bg-blue-500 hover:bg-blue-600 text-white font-medium rounded-md transition-colors"
-                    >
-                      提交留言
-                    </button>
-                  </div>
-                </form>
+                ) : (
+                  <form onSubmit={handleSubmit} className="space-y-4">
+                    <div>
+                      <label className="block text-sm font-medium mb-1" htmlFor="name">姓名</label>
+                      <input 
+                        type="text" 
+                        id="name" 
+                        name="name"
+                        value={formData.name}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full px-4 py-2 rounded-md bg-gray-600 border border-gray-500 focus:outline-none focus:border-blue-500" 
+                        placeholder="您的姓名" 
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium mb-1" htmlFor="email">邮箱</label>
+                      <input 
+                        type="email" 
+                        id="email" 
+                        name="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full px-4 py-2 rounded-md bg-gray-600 border border-gray-500 focus:outline-none focus:border-blue-500" 
+                        placeholder="您的邮箱" 
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium mb-1" htmlFor="phone">电话</label>
+                      <input 
+                        type="tel" 
+                        id="phone" 
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleInputChange}
+                        className="w-full px-4 py-2 rounded-md bg-gray-600 border border-gray-500 focus:outline-none focus:border-blue-500" 
+                        placeholder="您的电话" 
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium mb-1" htmlFor="message">留言内容</label>
+                      <textarea 
+                        id="message" 
+                        name="message"
+                        rows={5}
+                        value={formData.message}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full px-4 py-2 rounded-md bg-gray-600 border border-gray-500 focus:outline-none focus:border-blue-500" 
+                        placeholder="请输入您的留言内容" 
+                      ></textarea>
+                    </div>
+                    
+                    {submitError && (
+                      <div className="bg-red-900 border border-red-700 text-white px-4 py-3 rounded-md">
+                        {submitError}
+                      </div>
+                    )}
+                    
+                    <div>
+                      <button 
+                        type="submit" 
+                        disabled={isSubmitting}
+                        className={`w-full py-3 bg-blue-500 hover:bg-blue-600 text-white font-medium rounded-md transition-colors ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
+                      >
+                        {isSubmitting ? '提交中...' : '提交留言'}
+                      </button>
+                    </div>
+                  </form>
+                )}
               </div>
             </div>
           </div>
