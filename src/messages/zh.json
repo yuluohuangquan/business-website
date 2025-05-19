@@ -24,7 +24,340 @@
         "location": "北京",
         "type": "全职",
         "requirements": "本科及以上学历，3年以上相关工作经验|优秀的沟通能力和项目管理能力|熟悉产品开发流程|有流体控制或相关行业经验优先"
+      },
+      "marketing": {
+        "title": "市场营销专员",
+        "location": "北京",
+        "type": "全职",
+        "requirements": "市场营销或相关专业本科及以上学历|优秀的文案和沟通能力|熟悉数字营销和社交媒体运营",
+        "responsibilities": "负责公司产品的市场推广|策划和执行营销活动|分析市场趋势和竞争对手"
+      },
+      "operations": {
+        "title": "运营主管",
+        "location": "北京",
+        "type": "全职",
+        "requirements": "3年以上相关工作经验|优秀的项目管理能力|良好的沟通协调能力",
+        "responsibilities": "负责公司日常运营管理|优化运营流程，提高效率|协调各部门工作，确保目标达成"
+      }
+    },
+    "about": {
+      "title": "关于我们",
+      "description": "WBG万博集科技有限公司是减振及流体控制产品的专业供应商，致力于创造和供应创新高效节能的产品，满足客户利益以及市场快速变化的需求。我们重视人才的发展，期待与您共同成长。",
+      "culture": {
+        "title": "我们的企业文化",
+        "description1": "在WBG万博集，我们秉承\"创造卓越\"的理念，追求产品质量和客户满意度的不断提升。我们拥有一支专业的国际化团队，为客户提供最优质的服务和解决方案。",
+        "description2": "我们为员工提供开放、平等、协作的工作环境，鼓励创新和自我发展。加入我们，您将有机会参与国际领先的项目，展示您的才华和潜力。"
+      },
+      "values": {
+        "0": {
+          "title": "创新",
+          "description": "我们致力于在流体控制和减振领域不断创新，以先进技术满足客户需求",
+          "icon": "💡"
+        },
+        "1": {
+          "title": "品质",
+          "description": "严格的ISO9001/ISO14001/ISO45001认证，确保我们的产品和服务达到国际标准",
+          "icon": "✓"
+        },
+        "2": {
+          "title": "责任",
+          "description": "我们重视环保责任，提供节能高效的解决方案，减少资源浪费",
+          "icon": "🌱"
+        },
+        "3": {
+          "title": "成长",
+          "description": "为员工提供广阔的发展空间和专业培训，共同成长，共创价值",
+          "icon": "📈"
+        }
+      }
+    },
+    "jobList": {
+      "title": "职位列表",
+      "description": "我们提供具有竞争力的薪资待遇和完善的福利制度，欢迎各领域的优秀人才加入我们的团队",
+      "responsibilitiesLabel": "工作职责"
+    },
+    "teamShowcase": {
+      "title": "团队风采",
+      "description": "在这里，您将与一群优秀的同事共同工作，挑战自我，实现价值"
+    },
+    "ctaSection": {
+      "title": "加入我们，共创未来",
+      "description": "我们期待与有才华、有激情的您一起成长，一起将WBG万博集打造成行业的领导者",
+      "buttonText": "立即申请职位"
+    },
+    "contactModal": {
+      "email": "hr@company.com",
+      "phone": "+86 123-4567-8900",
+      "learnMore": "您也可以通过以下方式了解更多公司信息：",
+      "viewCompanyIntro": "查看公司简介 →",
+      "viewCompanyVision": "了解公司愿景 →"
+    }
+  },
+  "Contact": {
+    "pageTitle": "联系我们",
+    "subtitle": "无间服务 客户至上",
+    "tabs": {
+      "contactUs": "联系我们",
+      "requestQuote": "索取报价"
+    },
+    "contactSection": {
+      "title": "联系我们",
+      "officeLocations": {
+        "beijing": {
+          "id": "beijing",
+          "city": "北京",
+          "phone": "010-85591869",
+          "email": "info@whcon.com",
+          "address": "北京市大兴区经济技术开发区首合国际大厦A座2层"
+        },
+        "shanghai": {
+          "id": "shanghai",
+          "city": "上海",
+          "phone": "13701698143",
+          "email": "keungluck@warcofs.com",
+          "address": "上海市普陀区光复西路2899弄赢华国际8号楼1005室"
+        },
+        "shenzhen": {
+          "id": "shenzhen",
+          "city": "深圳",
+          "phone": "13823733906",
+          "email": "tom@warcofs.com",
+          "address": "广东省深圳市宝安区西乡幸福港湾前海科创中心232室"
+        },
+        "shenyang": {
+          "id": "shenyang",
+          "city": "沈阳",
+          "phone": "15840060708",
+          "email": "zhyc@warcofs.com",
+          "address": "辽宁省沈阳市浑南区绮霞街6-3号（1-12-3）"
+        }
+      },
+      "labels": {
+        "phone": "电话：",
+        "email": "邮箱：",
+        "address": "地址："
+      }
+    },
+    "quoteSection": {
+      "title": "索取报价",
+      "form": {
+        "name": "您的姓名",
+        "email": "电子邮箱",
+        "phone": "联系电话",
+        "reason": "查询原因",
+        "reasonPlaceholder": "请选择原因",
+        "reasonOptions": {
+          "productInquiry": "产品询价",
+          "techSupport": "技术支持",
+          "partnership": "合作伙伴",
+          "other": "其他"
+        },
+        "details": "请求详情",
+        "detailsPlaceholder": "请详细描述您的需求...",
+        "submitButton": "提交",
+        "submittingButton": "提交中...",
+        "successTitle": "提交成功",
+        "successMessage": "感谢您的咨询，我们会尽快与您联系！"
       }
     }
+  },
+  "Footer": {
+    "companyName": "WBG万博集",
+    "companyDescription": "致力于通过尖端温控技术为客户创造长期价值，推动行业可持续发展。",
+    "sections": {
+      "serviceCenter": "服务中心",
+      "productCenter": "产品中心",
+      "newsCenter": "新闻资讯"
+    },
+    "products": {
+      "wa": "盖雷智阀",
+      "johnsoncontrols": "JohnsonControls",
+      "flowcon": "FlowCon",
+      "warco": "WARCO"
+    },
+    "links": {
+      "title": "友情链接"
+    },
+    "copyright": {
+      "text": "Copyright © {year} WBG All rights reserved.",
+      "certification": "企业认证： ISO9001/ISO14001/ISO45001"
+    }
+  },
+  "Home": {
+    "brandSection": {
+      "title": "品牌展示",
+      "brands": {
+        "0": {
+          "name": "云酷KeenCool",
+          "description": "杭州云酷智能科技有限公司是国内领先的浸没式液冷科技企业，专注于数据中心、通信基站及储能场景的高效散热解决方案。凭借自研冷却液与智能控制技术，实现PUE低至1.08，助力\"双碳\"目标，并与国家电网、中国电信等头部企业深度合作，推动液冷技术规模化应用",
+          "cta": "品牌产品"
+        },
+        "1": {
+          "name": "佳力图Canatal",
+          "description": "南京佳力图专注于机房空调与精密温控领域，提供高效节能的制冷解决方案，产品涵盖精密空调、冷水机组等，以创新技术、稳定性能及智能化服务赢得全球客户信赖，助力数据中心、通信等关键行业稳健发展。",
+          "cta": "品牌产品"
+        },
+        "2": {
+          "name": "沃茨Watts",
+          "description": "WATTS沃茨于1874年创立于美国，是全球领先的水工业解决方案提供商，专注高品质阀门、管件及水处理产品研发，以创新科技与严苛标准守护家庭与商业用水安全。其产品以耐用性、节能环保著称，服务网络覆盖全球，致力于为现代生活提供可靠、高效的水系统支持。",
+          "cta": "品牌产品"
+        },
+        "3": {
+          "name": "艾维科IVCO",
+          "description": "上海艾维科阀门股份有限公司是专业阀门制造商，位于上海青浦工业园区，产品涵盖核电阀、蝶阀、球阀等，通过ISO9001及TS认证，获多项专利及高新技术企业称号。专注核电、石化等领域，以技术、质量和服务赢得国内外客户信赖。",
+          "cta": "品牌产品"
+        }
+      }
+    },
+    "serviceSection": {
+      "title": "服务中心",
+      "services": {
+        "0": {
+          "title": "下载中心",
+          "subtitle": "DOWNLOAD CENTER",
+          "cta": "查看详情"
+        },
+        "1": {
+          "title": "技术中心",
+          "subtitle": "TECHNOLOGY CENTER",
+          "cta": "查看详情"
+        }
+      }
+    },
+    "newsSection": {
+      "title": "资讯动态",
+      "viewMore": "更多动态",
+      "viewDetails": "查看详情"
+    },
+    "aboutSection": {
+      "title": "关于WBG万博集",
+      "paragraph1": "上海万博集智能科技有限公司是领先的液冷及暖通解决方案供应商，专注于为智算中心、数据中心、机房温控及水工业领域提供高效节能的创新产品。",
+      "paragraph2": "凭借在液冷技术领域的持续创新和全球化业务布局（覆盖中国、美国、欧洲及东南亚），公司以ISO9001/14001/18001认证体系为保障，致力于通过尖端温控技术为客户创造长期价值，推动行业可持续发展。",
+      "cta": "查看更多"
+    },
+    "clientsSection": {
+      "title": "我们的客户"
+    },
+    "contactSection": {
+      "title": "联系我们",
+      "contactInfo": {
+        "title": "联系方式",
+        "address": "地址：",
+        "addressValue": "上海市普陀区真北路3199号星云经济区26栋",
+        "phone": "电话：",
+        "phoneValue": "021-65879859",
+        "email": "邮箱：",
+        "emailValue": "wbg@wbgai.com",
+        "workHours": "工作时间：",
+        "workHoursValue": "周一至周五 9:00-18:00"
+      },
+      "contactForm": {
+        "title": "给我们留言",
+        "name": "姓名",
+        "namePlaceholder": "您的姓名",
+        "email": "邮箱",
+        "emailPlaceholder": "您的邮箱",
+        "phone": "电话",
+        "phonePlaceholder": "您的电话",
+        "message": "留言内容",
+        "messagePlaceholder": "请输入您的留言内容",
+        "submitButton": "提交留言",
+        "submittingButton": "提交中...",
+        "successTitle": "提交成功",
+        "successMessage": "感谢您的咨询，我们会尽快与您联系！"
+      }
+    }
+  },
+  "About": {
+    "pageTitle": "关于我们",
+    "subtitle": "无间服务 客户至上",
+    "navigation": {
+      "introduction": "公司简介",
+      "vision": "公司愿景",
+      "back": "返回"
+    },
+    "introduction": {
+      "section": {
+        "title": "公司简介",
+        "subtitle": "INTRODUCTION",
+        "paragraph1": "上海万博集智能科技有限公司是领先的液冷及暖通解决方案供应商，专注于为智算中心、数据中心、机房温控及水工业领域提供高效节能的创新产品。",
+        "paragraph2": "凭借在液冷技术领域的持续创新和全球化业务布局（覆盖中国、美国、欧洲及东南亚），公司以ISO9001/14001/18001认证体系为保障，致力于通过尖端温控技术为客户创造长期价值，推动行业可持续发展。",
+        "viewMore": "查看更多",
+        "businessTitle": "我们的业务",
+        "businesses": {
+          "0": {
+            "id": "01",
+            "title": "水工业",
+            "description": "提供水工业相关的高效节能产品和控制解决方案，帮助客户实现水资源的高效利用。"
+          },
+          "1": {
+            "id": "02",
+            "title": "流体控制",
+            "description": "专业的流体控制产品和解决方案，应用于各种工业和商业场景，确保系统的高效运行。"
+          },
+          "2": {
+            "id": "03",
+            "title": "减振降噪",
+            "description": "提供先进的减振技术和降噪解决方案，改善工作环境，提高系统稳定性。"
+          }
+        },
+        "certificationsTitle": "我们的资质",
+        "partnersTitle": "合作伙伴"
+      }
+    },
+    "vision": {
+      "section": {
+        "title": "公司愿景",
+        "subtitle": "COMPANY VISION",
+        "companyName": "WBG万博集科技有限公司",
+        "paragraph1": "上海万博集智能科技有限公司是领先的液冷及暖通解决方案供应商，专注于为智算中心、数据中心、机房温控及水工业领域提供高效节能的创新产品。",
+        "paragraph2": "凭借在液冷技术领域的持续创新和全球化业务布局（覆盖中国、美国、欧洲及东南亚），公司以ISO9001/14001/18001认证体系为保障，致力于通过尖端温控技术为客户创造长期价值，推动行业可持续发展。",
+        "paragraph3": "供应包括通用阀门、电动阀、水力控制阀、平衡阀等多种产品，能够覆盖流体系统的多种需求。",
+        "paragraph4": "公司在上海、广州、长沙、重庆、成都、沈阳、合肥等地建立了业务分支机构，保障为客户提供无间隙服务。",
+        "visionStatement": "公司的愿景是让高效能产品及服务为客户带来持续效率利益，为益于环境践行社会责任。",
+        "companyInfo": {
+          "title": "公司信息",
+          "items": {
+            "0": {
+              "label": "公司名称",
+              "value": "WBG万博集科技有限公司"
+            },
+            "1": {
+              "label": "外文名",
+              "value": "Whcon (Beijing) Fluid Systems Co., Ltd"
+            },
+            "2": {
+              "label": "成立于",
+              "value": "2014年3月13日"
+            }
+          }
+        },
+        "branchesTitle": "业务分支机构",
+        "productsTitle": "我们的产品",
+        "products": {
+          "0": {
+            "title": "通用阀门",
+            "description": "高品质通用阀门，满足各种流体控制需求，质量可靠，使用寿命长。"
+          },
+          "1": {
+            "title": "电动阀",
+            "description": "智能化电动阀门，精准控制，可远程操作，适用于智能建筑和自动化系统。"
+          },
+          "2": {
+            "title": "水力控制阀",
+            "description": "专业水力控制阀门，用于管网压力控制、流量调节和水力平衡等场景。"
+          },
+          "3": {
+            "title": "平衡阀",
+            "description": "高精度平衡阀，实现系统最佳水力平衡，提高能效，节约能源。"
+          }
+        },
+        "visionTitle": "公司愿景"
+      }
+    },
+    "partners": {
+      "title": "合作伙伴及其资质",
+      "viewCredentials": "查看资质"
+    }
   }
-} 
+}

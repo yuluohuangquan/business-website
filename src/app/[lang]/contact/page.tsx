@@ -4,40 +4,10 @@ import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useParams, useSearchParams } from 'next/navigation';
-
-// 联系地址数据
-const officeLocations = [
-  {
-    id: 'beijing',
-    city: '北京',
-    phone: '010-85591869',
-    email: 'info@whcon.com',
-    address: '北京市大兴区经济技术开发区首合国际大厦A座2层'
-  },
-  {
-    id: 'shanghai',
-    city: '上海',
-    phone: '13701698143',
-    email: 'keungluck@warcofs.com',
-    address: '上海市普陀区光复西路2899弄赢华国际8号楼1005室'
-  },
-  {
-    id: 'shenzhen',
-    city: '深圳',
-    phone: '13823733906',
-    email: 'tom@warcofs.com',
-    address: '广东省深圳市宝安区西乡幸福港湾前海科创中心232室'
-  },
-  {
-    id: 'shenyang',
-    city: '沈阳',
-    phone: '15840060708',
-    email: 'zhyc@warcofs.com',
-    address: '辽宁省沈阳市浑南区绮霞街6-3号（1-12-3）'
-  }
-];
+import { useTranslations } from 'next-intl';
 
 export default function ContactPage() {
+  const t = useTranslations('Contact');
   const params = useParams();
   const searchParams = useSearchParams();
   const [formData, setFormData] = useState({
@@ -55,6 +25,9 @@ export default function ContactPage() {
   const contact1Ref = useRef<HTMLDivElement>(null);
   const contact2Ref = useRef<HTMLDivElement>(null);
 
+  // 预定义的办公地点数据 ID
+  const officeIds = ['beijing', 'shanghai', 'shenzhen', 'shenyang'];
+  
   // 处理URL中的锚点，滚动到相应部分
   useEffect(() => {
     // 获取URL中的锚点
@@ -137,9 +110,9 @@ export default function ContactPage() {
       {/* 页面标题部分 */}
       <div className="bg-blue-900 text-white py-16">
         <div className="container mx-auto px-4">
-          <h1 className="text-4xl font-bold mb-4">联系我们</h1>
+          <h1 className="text-4xl font-bold mb-4">{t('pageTitle')}</h1>
           <div className="w-20 h-1 bg-blue-500"></div>
-          <p className="mt-4 text-xl">无间服务 客户至上</p>
+          <p className="mt-4 text-xl">{t('subtitle')}</p>
         </div>
       </div>
 
@@ -152,7 +125,7 @@ export default function ContactPage() {
                 onClick={() => switchTab('contact1')}
                 className={`${activeTab === 'contact1' ? 'text-blue-600 font-medium' : 'text-gray-700 hover:text-blue-600 font-medium'}`}
               >
-                联系我们
+                {t('tabs.contactUs')}
               </button>
             </li>
             <li>
@@ -160,7 +133,7 @@ export default function ContactPage() {
                 onClick={() => switchTab('contact2')}
                 className={`${activeTab === 'contact2' ? 'text-blue-600 font-medium' : 'text-gray-700 hover:text-blue-600 font-medium'}`}
               >
-                索取报价
+                {t('tabs.requestQuote')}
               </button>
             </li>
           </ul>
@@ -175,7 +148,7 @@ export default function ContactPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-3xl font-bold text-center mb-2">联系我们</h2>
+            <h2 className="text-3xl font-bold text-center mb-2">{t('contactSection.title')}</h2>
             <div className="w-20 h-1 bg-blue-500 mx-auto mb-12"></div>
             
             <div className="max-w-7xl mx-auto">
@@ -194,57 +167,67 @@ export default function ContactPage() {
               
               {/* 联系方式列表 */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-                {officeLocations.map((office) => (
-                  <motion.div
-                    key={office.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.2 }}
-                    className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
-                  >
-                    <h3 className="text-xl font-bold mb-4 text-blue-900">{office.city}</h3>
-                    <div className="space-y-3">
-                      <p className="flex items-start">
-                        <span className="flex-shrink-0 text-blue-600 mr-3">
-                          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                            <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
-                          </svg>
-                        </span>
-                        <span>
-                          <span className="font-medium text-gray-700">电话：</span>
-                          <a href={`tel:${office.phone}`} className="text-blue-600 hover:underline">
-                            {office.phone}
-                          </a>
-                        </span>
-                      </p>
-                      <p className="flex items-start">
-                        <span className="flex-shrink-0 text-blue-600 mr-3">
-                          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-                            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-                          </svg>
-                        </span>
-                        <span>
-                          <span className="font-medium text-gray-700">邮箱：</span>
-                          <a href={`mailto:${office.email}`} className="text-blue-600 hover:underline">
-                            {office.email}
-                          </a>
-                        </span>
-                      </p>
-                      <p className="flex items-start">
-                        <span className="flex-shrink-0 text-blue-600 mr-3">
-                          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                            <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
-                          </svg>
-                        </span>
-                        <span>
-                          <span className="font-medium text-gray-700">地址：</span>
-                          <span className="text-gray-600">{office.address}</span>
-                        </span>
-                      </p>
-                    </div>
-                  </motion.div>
-                ))}
+                {officeIds.map((officeId) => {
+                  const office = {
+                    id: officeId,
+                    city: t(`contactSection.officeLocations.${officeId}.city`),
+                    phone: t(`contactSection.officeLocations.${officeId}.phone`),
+                    email: t(`contactSection.officeLocations.${officeId}.email`),
+                    address: t(`contactSection.officeLocations.${officeId}.address`)
+                  };
+                  
+                  return (
+                    <motion.div
+                      key={office.id}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: 0.2 }}
+                      className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
+                    >
+                      <h3 className="text-xl font-bold mb-4 text-blue-900">{office.city}</h3>
+                      <div className="space-y-3">
+                        <p className="flex items-start">
+                          <span className="flex-shrink-0 text-blue-600 mr-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                              <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                            </svg>
+                          </span>
+                          <span>
+                            <span className="font-medium text-gray-700">{t('contactSection.labels.phone')}</span>
+                            <a href={`tel:${office.phone}`} className="text-blue-600 hover:underline">
+                              {office.phone}
+                            </a>
+                          </span>
+                        </p>
+                        <p className="flex items-start">
+                          <span className="flex-shrink-0 text-blue-600 mr-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                              <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                              <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                            </svg>
+                          </span>
+                          <span>
+                            <span className="font-medium text-gray-700">{t('contactSection.labels.email')}</span>
+                            <a href={`mailto:${office.email}`} className="text-blue-600 hover:underline">
+                              {office.email}
+                            </a>
+                          </span>
+                        </p>
+                        <p className="flex items-start">
+                          <span className="flex-shrink-0 text-blue-600 mr-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                              <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
+                            </svg>
+                          </span>
+                          <span>
+                            <span className="font-medium text-gray-700">{t('contactSection.labels.address')}</span>
+                            <span className="text-gray-600">{office.address}</span>
+                          </span>
+                        </p>
+                      </div>
+                    </motion.div>
+                  );
+                })}
               </div>
             </div>
           </motion.div>
@@ -259,7 +242,7 @@ export default function ContactPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-3xl font-bold text-center mb-2">索取报价</h2>
+            <h2 className="text-3xl font-bold text-center mb-2">{t('quoteSection.title')}</h2>
             <div className="w-20 h-1 bg-blue-500 mx-auto mb-12"></div>
             
             <div className="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow-md">
@@ -268,13 +251,13 @@ export default function ContactPage() {
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 text-green-500 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
-                  <h3 className="text-2xl font-bold text-gray-800 mb-2">提交成功</h3>
-                  <p className="text-gray-600">感谢您的咨询，我们会尽快与您联系！</p>
+                  <h3 className="text-2xl font-bold text-gray-800 mb-2">{t('quoteSection.form.successTitle')}</h3>
+                  <p className="text-gray-600">{t('quoteSection.form.successMessage')}</p>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
-                    <label htmlFor="name" className="block text-gray-700 font-medium mb-2">您的姓名</label>
+                    <label htmlFor="name" className="block text-gray-700 font-medium mb-2">{t('quoteSection.form.name')}</label>
                     <input
                       type="text"
                       id="name"
@@ -287,7 +270,7 @@ export default function ContactPage() {
                   </div>
                   
                   <div>
-                    <label htmlFor="email" className="block text-gray-700 font-medium mb-2">电子邮箱</label>
+                    <label htmlFor="email" className="block text-gray-700 font-medium mb-2">{t('quoteSection.form.email')}</label>
                     <input
                       type="email"
                       id="email"
@@ -300,7 +283,7 @@ export default function ContactPage() {
                   </div>
                   
                   <div>
-                    <label htmlFor="phone" className="block text-gray-700 font-medium mb-2">联系电话</label>
+                    <label htmlFor="phone" className="block text-gray-700 font-medium mb-2">{t('quoteSection.form.phone')}</label>
                     <input
                       type="tel"
                       id="phone"
@@ -313,7 +296,7 @@ export default function ContactPage() {
                   </div>
                   
                   <div>
-                    <label htmlFor="reason" className="block text-gray-700 font-medium mb-2">查询原因</label>
+                    <label htmlFor="reason" className="block text-gray-700 font-medium mb-2">{t('quoteSection.form.reason')}</label>
                     <select
                       id="reason"
                       name="reason"
@@ -322,16 +305,16 @@ export default function ContactPage() {
                       required
                       className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                     >
-                      <option value="">请选择原因</option>
-                      <option value="产品询价">产品询价</option>
-                      <option value="技术支持">技术支持</option>
-                      <option value="合作伙伴">合作伙伴</option>
-                      <option value="其他">其他</option>
+                      <option value="">{t('quoteSection.form.reasonPlaceholder')}</option>
+                      <option value="产品询价">{t('quoteSection.form.reasonOptions.productInquiry')}</option>
+                      <option value="技术支持">{t('quoteSection.form.reasonOptions.techSupport')}</option>
+                      <option value="合作伙伴">{t('quoteSection.form.reasonOptions.partnership')}</option>
+                      <option value="其他">{t('quoteSection.form.reasonOptions.other')}</option>
                     </select>
                   </div>
                   
                   <div>
-                    <label htmlFor="details" className="block text-gray-700 font-medium mb-2">请求详情</label>
+                    <label htmlFor="details" className="block text-gray-700 font-medium mb-2">{t('quoteSection.form.details')}</label>
                     <textarea
                       id="details"
                       name="details"
@@ -340,7 +323,7 @@ export default function ContactPage() {
                       rows={5}
                       required
                       className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      placeholder="请详细描述您的需求..."
+                      placeholder={t('quoteSection.form.detailsPlaceholder')}
                     ></textarea>
                   </div>
                   
@@ -356,7 +339,7 @@ export default function ContactPage() {
                       disabled={isSubmitting}
                       className={`w-full bg-blue-600 text-white py-3 px-4 rounded-md hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
                     >
-                      {isSubmitting ? '提交中...' : '提交'}
+                      {isSubmitting ? t('quoteSection.form.submittingButton') : t('quoteSection.form.submitButton')}
                     </button>
                   </div>
                 </form>

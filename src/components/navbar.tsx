@@ -186,7 +186,7 @@ export function Navbar() {
                 {/* 使用public文件夹下的logo图片 */}
                 <Image 
                   src="/logo.png" 
-                  alt="万博集科技" 
+                  alt="WBG万博集" 
                   width={200} 
                   height={60} 
                   priority

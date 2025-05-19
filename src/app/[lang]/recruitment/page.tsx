@@ -12,30 +12,6 @@ const contactInfo = {
   phone: '+86 123-4567-8900'
 };
 
-// 添加公司理念数据
-const companyValues = [
-  {
-    title: '创新',
-    description: '我们致力于在流体控制和减振领域不断创新，以先进技术满足客户需求',
-    icon: '💡'
-  },
-  {
-    title: '品质',
-    description: '严格的ISO9001/ISO14001/ISO45001认证，确保我们的产品和服务达到国际标准',
-    icon: '✓'
-  },
-  {
-    title: '责任',
-    description: '我们重视环保责任，提供节能高效的解决方案，减少资源浪费',
-    icon: '🌱'
-  },
-  {
-    title: '成长',
-    description: '为员工提供广阔的发展空间和专业培训，共同成长，共创价值',
-    icon: '📈'
-  }
-];
-
 export default function RecruitmentPage() {
   const t = useTranslations('Recruitment');
   const [selectedDepartment, setSelectedDepartment] = useState(t('all'));
@@ -65,21 +41,45 @@ export default function RecruitmentPage() {
     },
     {
       id: 3,
-      title: '市场营销专员',
+      title: t('jobs.marketing.title'),
       department: t('marketing'),
-      location: '北京',
-      type: '全职',
-      requirements: ['市场营销或相关专业本科及以上学历', '优秀的文案和沟通能力', '熟悉数字营销和社交媒体运营'],
-      responsibilities: ['负责公司产品的市场推广', '策划和执行营销活动', '分析市场趋势和竞争对手']
+      location: t('jobs.marketing.location'),
+      type: t('jobs.marketing.type'),
+      requirements: t('jobs.marketing.requirements').split('|'),
+      responsibilities: t('jobs.marketing.responsibilities').split('|')
     },
     {
       id: 4,
-      title: '运营主管',
+      title: t('jobs.operations.title'),
       department: t('operations'),
-      location: '北京',
-      type: '全职',
-      requirements: ['3年以上相关工作经验', '优秀的项目管理能力', '良好的沟通协调能力'],
-      responsibilities: ['负责公司日常运营管理', '优化运营流程，提高效率', '协调各部门工作，确保目标达成']
+      location: t('jobs.operations.location'),
+      type: t('jobs.operations.type'),
+      requirements: t('jobs.operations.requirements').split('|'),
+      responsibilities: t('jobs.operations.responsibilities').split('|')
+    }
+  ];
+
+  // 从翻译文件获取公司价值观
+  const companyValues = [
+    {
+      title: t('about.values.0.title'),
+      description: t('about.values.0.description'),
+      icon: t('about.values.0.icon')
+    },
+    {
+      title: t('about.values.1.title'),
+      description: t('about.values.1.description'),
+      icon: t('about.values.1.icon')
+    },
+    {
+      title: t('about.values.2.title'),
+      description: t('about.values.2.description'),
+      icon: t('about.values.2.icon')
+    },
+    {
+      title: t('about.values.3.title'),
+      description: t('about.values.3.description'),
+      icon: t('about.values.3.icon')
     }
   ];
 
@@ -127,10 +127,10 @@ export default function RecruitmentPage() {
           className="mb-16"
         >
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">关于我们</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">{t('about.title')}</h2>
             <div className="w-20 h-1 bg-blue-600 mx-auto mb-6"></div>
             <p className="max-w-3xl mx-auto text-lg text-gray-600">
-              WBG万博集科技有限公司是减振及流体控制产品的专业供应商，致力于创造和供应创新高效节能的产品，满足客户利益以及市场快速变化的需求。我们重视人才的发展，期待与您共同成长。
+              {t('about.description')}
             </p>
           </div>
 
@@ -145,12 +145,12 @@ export default function RecruitmentPage() {
               />
             </div>
             <div className="md:w-1/2">
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">我们的企业文化</h3>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">{t('about.culture.title')}</h3>
               <p className="text-lg text-gray-600 mb-6">
-                在WBG万博集，我们秉承&ldquo;创造卓越&rdquo;的理念，追求产品质量和客户满意度的不断提升。我们拥有一支专业的国际化团队，为客户提供最优质的服务和解决方案。
+                {t('about.culture.description1')}
               </p>
               <p className="text-lg text-gray-600">
-                我们为员工提供开放、平等、协作的工作环境，鼓励创新和自我发展。加入我们，您将有机会参与国际领先的项目，展示您的才华和潜力。
+                {t('about.culture.description2')}
               </p>
             </div>
           </div>
@@ -179,10 +179,10 @@ export default function RecruitmentPage() {
           transition={{ delay: 0.4 }}
         >
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">职位列表</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">{t('jobList.title')}</h2>
             <div className="w-20 h-1 bg-blue-600 mx-auto mb-6"></div>
             <p className="max-w-3xl mx-auto text-lg text-gray-600">
-              我们提供具有竞争力的薪资待遇和完善的福利制度，欢迎各领域的优秀人才加入我们的团队
+              {t('jobList.description')}
             </p>
           </div>
 
@@ -241,7 +241,7 @@ export default function RecruitmentPage() {
                   </div>
                   
                   <div className="mb-4">
-                    <h4 className="font-medium text-gray-900 mb-2">工作职责：</h4>
+                    <h4 className="font-medium text-gray-900 mb-2">{t('jobList.responsibilitiesLabel')}：</h4>
                     <ul className="list-disc list-inside text-gray-600 space-y-1">
                       {job.responsibilities.map((resp, index) => (
                         <li key={index} className="text-sm">{resp}</li>
@@ -265,10 +265,10 @@ export default function RecruitmentPage() {
       <section className="py-16 bg-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">团队风采</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">{t('teamShowcase.title')}</h2>
             <div className="w-20 h-1 bg-blue-600 mx-auto mb-6"></div>
             <p className="max-w-3xl mx-auto text-lg text-gray-600 mb-8">
-              在这里，您将与一群优秀的同事共同工作，挑战自我，实现价值
+              {t('teamShowcase.description')}
             </p>
           </div>
           
@@ -298,15 +298,15 @@ export default function RecruitmentPage() {
       {/* 底部CTA部分 */}
       <section className="py-20 bg-gradient-to-r from-blue-800 to-blue-600 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold mb-6">加入我们，共创未来</h2>
+          <h2 className="text-3xl font-bold mb-6">{t('ctaSection.title')}</h2>
           <p className="text-xl opacity-90 max-w-3xl mx-auto mb-8">
-            我们期待与有才华、有激情的您一起成长，一起将WBG万博集打造成行业的领导者
+            {t('ctaSection.description')}
           </p>
           <button 
             onClick={() => setShowContact(true)}
             className="bg-white text-blue-700 hover:bg-blue-50 px-8 py-3 rounded-full font-medium transition-colors shadow-lg"
           >
-            立即申请职位
+            {t('ctaSection.buttonText')}
           </button>
         </div>
       </section>
@@ -323,24 +323,24 @@ export default function RecruitmentPage() {
             <div className="space-y-4">
               <p className="flex items-center text-gray-600">
                 <span className="font-medium mr-3 text-gray-900">Email:</span>
-                <a href={`mailto:${contactInfo.email}`} className="text-blue-600 hover:underline">
-                  {contactInfo.email}
+                <a href={`mailto:${t('contactModal.email')}`} className="text-blue-600 hover:underline">
+                  {t('contactModal.email')}
                 </a>
               </p>
               <p className="flex items-center text-gray-600">
                 <span className="font-medium mr-3 text-gray-900">{t('phone')}:</span>
-                <a href={`tel:${contactInfo.phone}`} className="text-blue-600 hover:underline">
-                  {contactInfo.phone}
+                <a href={`tel:${t('contactModal.phone')}`} className="text-blue-600 hover:underline">
+                  {t('contactModal.phone')}
                 </a>
               </p>
               
               <div className="mt-6 border-t border-gray-200 pt-6">
-                <p className="text-gray-600 mb-4">您也可以通过以下方式了解更多公司信息：</p>
+                <p className="text-gray-600 mb-4">{t('contactModal.learnMore')}</p>
                 <Link href="/about" className="text-blue-600 hover:underline block mb-2">
-                  查看公司简介 →
+                  {t('contactModal.viewCompanyIntro')}
                 </Link>
                 <Link href="/about/vision" className="text-blue-600 hover:underline block">
-                  了解公司愿景 →
+                  {t('contactModal.viewCompanyVision')}
                 </Link>
               </div>
             </div>

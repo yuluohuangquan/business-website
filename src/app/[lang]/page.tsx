@@ -4,36 +4,42 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { HeroSlider } from "@/components";
 import { useState } from "react";
+import { useTranslations } from 'next-intl';
 
 export default function Page() {
+  // 使用翻译hook
+  const t = useTranslations();
+  const homeT = useTranslations('Home');
+
+  // 创建品牌数据
   const brands = [
     {
       id: 1,
-      name: "涡控",
-      description: "Warco品牌1960年创立于美国，是北美减振材料技术和流体密封技术的掌握者，60多年来将精湛的材料知识和经验应用于工程流体系统和流程工业系统。",
+      name: homeT('brandSection.brands.0.name'),
+      description: homeT('brandSection.brands.0.description'),
       link: "/product/warco",
       image: "/images/home/brand1.png"
     },
     {
       id: 2,
-      name: "阀罗坎",
-      description: "源自丹麦的平衡阀技术领先者，在美国加州和丹麦设有工厂，是动态平衡阀和动态平衡电动调节阀的发明者，理念： 节约能耗 、智能化控制、节省成本、技术领先。",
+      name: homeT('brandSection.brands.1.name'),
+      description: homeT('brandSection.brands.1.description'),
       link: "/product/flowcon",
-      image: "/images/home/brand2.jpg"
+      image: "/images/home/brand2.png"
     },
     {
       id: 3,
-      name: "江森自控",
-      description: "江森是全球关键环境建筑控制一体式解决方案提供商；从暖通空调、楼宇自控、能源管理、关键环境控制、安全防范到消防报警，江森自控拥有业内值得信赖的品牌。",
+      name: homeT('brandSection.brands.2.name'),
+      description: homeT('brandSection.brands.2.description'),
       link: "/product/johnson-controls",
-      image: "/images/home/brand3.jpg"
+      image: "/images/home/brand3.png"
     },
     {
       id: 4,
-      name: "盖雷|盖雷智阀",
-      description: "盖雷是领先的流体控制供应商，现隶属于奥赛阀门集团，服务了超过100座大型数据中心和大型商业综合体及酒店,致力于更加节能的流体控制，遵循高品质及服务。",
+      name: homeT('brandSection.brands.3.name'),
+      description: homeT('brandSection.brands.3.description'),
       link: "/product/wa",
-      image: "/images/home/brand4.jpg"
+      image: "/images/home/brand4.png"
     }
   ];
 
@@ -152,7 +158,7 @@ export default function Page() {
       {/* Brands Section */}
       <section className="py-16 container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-2">品牌展示</h2>
+          <h2 className="text-3xl font-bold mb-2">{homeT('brandSection.title')}</h2>
           <div className="w-20 h-1 bg-blue-500 mx-auto"></div>
         </div>
 
@@ -165,7 +171,7 @@ export default function Page() {
               transition={{ duration: 0.5 }}
               className="bg-white p-6 shadow-md rounded-md"
             >
-              <div className="mb-4 flex justify-center">
+              <div className="mb-4 flex justify-center h-80 w-auto">
                 <Image 
                   src={brand.image} 
                   alt={brand.name} 
@@ -177,7 +183,7 @@ export default function Page() {
               <h3 className="text-xl font-bold mb-4">{brand.name}</h3>
               <p className="text-gray-600 mb-4">{brand.description}</p>
               <Link href={brand.link} className="text-blue-500 hover:underline">
-                品牌产品
+                {homeT('brandSection.brands.0.cta')}
               </Link>
             </motion.div>
           ))}
@@ -188,7 +194,7 @@ export default function Page() {
       {/* <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-2">服务中心</h2>
+            <h2 className="text-3xl font-bold mb-2">{homeT('serviceSection.title')}</h2>
             <div className="w-20 h-1 bg-blue-500 mx-auto"></div>
           </div>
 
@@ -202,16 +208,16 @@ export default function Page() {
               <div className="flex justify-center mb-4">
                 <Image 
                   src="https://picsum.photos/100/100" 
-                  alt="下载中心" 
+                  alt={homeT('serviceSection.services.0.title')} 
                   width={100} 
                   height={100}
                   className="rounded-full" 
                 />
               </div>
-              <h3 className="text-xl font-bold mb-2">下载中心</h3>
-              <p className="uppercase text-sm text-gray-500 mb-4">DOWNLOAD CENTER</p>
+              <h3 className="text-xl font-bold mb-2">{homeT('serviceSection.services.0.title')}</h3>
+              <p className="uppercase text-sm text-gray-500 mb-4">{homeT('serviceSection.services.0.subtitle')}</p>
               <Link href="/service/download" className="text-blue-500 hover:underline">
-                查看详情
+                {homeT('serviceSection.services.0.cta')}
               </Link>
             </motion.div>
             <motion.div 
@@ -223,16 +229,16 @@ export default function Page() {
               <div className="flex justify-center mb-4">
                 <Image 
                   src="https://picsum.photos/100/100" 
-                  alt="技术中心" 
+                  alt={homeT('serviceSection.services.1.title')} 
                   width={100} 
                   height={100}
                   className="rounded-full" 
                 />
               </div>
-              <h3 className="text-xl font-bold mb-2">技术中心</h3>
-              <p className="uppercase text-sm text-gray-500 mb-4">TECHNOLOGY CENTER</p>
+              <h3 className="text-xl font-bold mb-2">{homeT('serviceSection.services.1.title')}</h3>
+              <p className="uppercase text-sm text-gray-500 mb-4">{homeT('serviceSection.services.1.subtitle')}</p>
               <Link href="/service/tech" className="text-blue-500 hover:underline">
-                查看详情
+                {homeT('serviceSection.services.1.cta')}
               </Link>
             </motion.div>
           </div>
@@ -242,7 +248,7 @@ export default function Page() {
       {/* News Section */}
       {/* <section className="py-16 container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-2">资讯动态</h2>
+          <h2 className="text-3xl font-bold mb-2">{homeT('newsSection.title')}</h2>
           <div className="w-20 h-1 bg-blue-500 mx-auto"></div>
         </div>
 
@@ -267,7 +273,7 @@ export default function Page() {
               <div className="text-gray-500 mb-2">{item.date}</div>
               <h3 className="text-lg font-semibold mb-4">{item.title}</h3>
               <Link href={item.link} className="text-blue-500 hover:underline">
-                查看详情
+                {homeT('newsSection.viewDetails')}
               </Link>
             </motion.div>
           ))}
@@ -275,7 +281,7 @@ export default function Page() {
 
         <div className="text-center mt-8">
           <Link href="/news" className="inline-block px-6 py-3 border border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white transition-colors rounded-md">
-            更多动态
+            {homeT('newsSection.viewMore')}
           </Link>
         </div>
       </section> */}
@@ -284,7 +290,7 @@ export default function Page() {
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-2">关于WBG万博集</h2>
+            <h2 className="text-3xl font-bold mb-2">{homeT('aboutSection.title')}</h2>
             <div className="w-20 h-1 bg-blue-500 mx-auto"></div>
           </div>
 
@@ -292,7 +298,7 @@ export default function Page() {
             <div className="md:w-1/2 mb-8 md:mb-0 md:pr-8">
               <Image 
                 src="https://picsum.photos/600/400" 
-                alt="关于我们" 
+                alt={homeT('aboutSection.title')} 
                 width={600} 
                 height={400}
                 className="rounded-lg shadow-lg" 
@@ -300,13 +306,13 @@ export default function Page() {
             </div>
             <div className="md:w-1/2">
               <p className="text-lg leading-relaxed mb-8">
-                WBG万博集科技有限公司是减振及流体控制产品的供应商，致力于创造和供应创新高效节能的产品，满足客户利益以及市场快速变化的需求，业务覆盖水工业，节能产品及流体控制、减振降噪、气流管理等行业。
+                {homeT('aboutSection.paragraph1')}
               </p>
               <p className="text-lg leading-relaxed mb-8">
-                自公司创立以来，公司致力于供应高效节能产品，同时在减振领域持续创新。秉承创造卓越，公司获得了ISO9001,ISO14001,ISO18001等认证，以保证益于环境，无间服务，客户利益。
+                {homeT('aboutSection.paragraph2')}
               </p>
               <Link href="/about" className="inline-block px-6 py-3 border border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white transition-colors rounded-md">
-                查看更多
+                {homeT('aboutSection.cta')}
               </Link>
             </div>
           </div>
@@ -316,7 +322,7 @@ export default function Page() {
       {/* Clients Section */}
       <section className="py-16 container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-2">我们的客户</h2>
+          <h2 className="text-3xl font-bold mb-2">{homeT('clientsSection.title')}</h2>
           <div className="w-20 h-1 bg-blue-500 mx-auto"></div>
         </div>
 
@@ -339,30 +345,30 @@ export default function Page() {
       <section className="py-16 bg-gray-800 text-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-2">联系我们</h2>
+            <h2 className="text-3xl font-bold mb-2">{homeT('contactSection.title')}</h2>
             <div className="w-20 h-1 bg-blue-500 mx-auto"></div>
           </div>
 
           <div className="flex flex-col md:flex-row max-w-6xl mx-auto">
             <div className="md:w-1/2 mb-8 md:mb-0 md:pr-8">
               <div className="bg-gray-700 p-8 rounded-lg">
-                <h3 className="text-xl font-bold mb-4">联系方式</h3>
+                <h3 className="text-xl font-bold mb-4">{homeT('contactSection.contactInfo.title')}</h3>
                 <ul className="space-y-4">
                   <li className="flex items-start">
-                    <span className="mr-3 text-blue-400">地址：</span>
-                    <span>北京市朝阳区</span>
+                    <span className="mr-3 text-blue-400">{homeT('contactSection.contactInfo.address')}</span>
+                    <span>{homeT('contactSection.contactInfo.addressValue')}</span>
                   </li>
                   <li className="flex items-start">
-                    <span className="mr-3 text-blue-400">电话：</span>
-                    <span>010-12345678</span>
+                    <span className="mr-3 text-blue-400">{homeT('contactSection.contactInfo.phone')}</span>
+                    <span>{homeT('contactSection.contactInfo.phoneValue')}</span>
                   </li>
                   <li className="flex items-start">
-                    <span className="mr-3 text-blue-400">邮箱：</span>
-                    <span>contact@wbg.com</span>
+                    <span className="mr-3 text-blue-400">{homeT('contactSection.contactInfo.email')}</span>
+                    <span>{homeT('contactSection.contactInfo.emailValue')}</span>
                   </li>
                   <li className="flex items-start">
-                    <span className="mr-3 text-blue-400">工作时间：</span>
-                    <span>周一至周五 9:00-18:00</span>
+                    <span className="mr-3 text-blue-400">{homeT('contactSection.contactInfo.workHours')}</span>
+                    <span>{homeT('contactSection.contactInfo.workHoursValue')}</span>
                   </li>
                 </ul>
 
@@ -379,20 +385,20 @@ export default function Page() {
             </div>
             <div className="md:w-1/2">
               <div className="bg-gray-700 p-8 rounded-lg h-full">
-                <h3 className="text-xl font-bold mb-4">给我们留言</h3>
+                <h3 className="text-xl font-bold mb-4">{homeT('contactSection.contactForm.title')}</h3>
                 
                 {submitSuccess ? (
                   <div className="text-center py-8">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 text-green-500 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
-                    <h3 className="text-2xl font-bold text-white mb-2">提交成功</h3>
-                    <p className="text-gray-300">感谢您的咨询，我们会尽快与您联系！</p>
+                    <h3 className="text-2xl font-bold text-white mb-2">{homeT('contactSection.contactForm.successTitle')}</h3>
+                    <p className="text-gray-300">{homeT('contactSection.contactForm.successMessage')}</p>
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
-                      <label className="block text-sm font-medium mb-1" htmlFor="name">姓名</label>
+                      <label className="block text-sm font-medium mb-1" htmlFor="name">{homeT('contactSection.contactForm.name')}</label>
                       <input 
                         type="text" 
                         id="name" 
@@ -401,11 +407,11 @@ export default function Page() {
                         onChange={handleInputChange}
                         required
                         className="w-full px-4 py-2 rounded-md bg-gray-600 border border-gray-500 focus:outline-none focus:border-blue-500" 
-                        placeholder="您的姓名" 
+                        placeholder={homeT('contactSection.contactForm.namePlaceholder')} 
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium mb-1" htmlFor="email">邮箱</label>
+                      <label className="block text-sm font-medium mb-1" htmlFor="email">{homeT('contactSection.contactForm.email')}</label>
                       <input 
                         type="email" 
                         id="email" 
@@ -414,11 +420,11 @@ export default function Page() {
                         onChange={handleInputChange}
                         required
                         className="w-full px-4 py-2 rounded-md bg-gray-600 border border-gray-500 focus:outline-none focus:border-blue-500" 
-                        placeholder="您的邮箱" 
+                        placeholder={homeT('contactSection.contactForm.emailPlaceholder')} 
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium mb-1" htmlFor="phone">电话</label>
+                      <label className="block text-sm font-medium mb-1" htmlFor="phone">{homeT('contactSection.contactForm.phone')}</label>
                       <input 
                         type="tel" 
                         id="phone" 
@@ -426,11 +432,11 @@ export default function Page() {
                         value={formData.phone}
                         onChange={handleInputChange}
                         className="w-full px-4 py-2 rounded-md bg-gray-600 border border-gray-500 focus:outline-none focus:border-blue-500" 
-                        placeholder="您的电话" 
+                        placeholder={homeT('contactSection.contactForm.phonePlaceholder')} 
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium mb-1" htmlFor="message">留言内容</label>
+                      <label className="block text-sm font-medium mb-1" htmlFor="message">{homeT('contactSection.contactForm.message')}</label>
                       <textarea 
                         id="message" 
                         name="message"
@@ -439,7 +445,7 @@ export default function Page() {
                         onChange={handleInputChange}
                         required
                         className="w-full px-4 py-2 rounded-md bg-gray-600 border border-gray-500 focus:outline-none focus:border-blue-500" 
-                        placeholder="请输入您的留言内容" 
+                        placeholder={homeT('contactSection.contactForm.messagePlaceholder')} 
                       ></textarea>
                     </div>
                     
@@ -455,7 +461,7 @@ export default function Page() {
                         disabled={isSubmitting}
                         className={`w-full py-3 bg-blue-500 hover:bg-blue-600 text-white font-medium rounded-md transition-colors ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
                       >
-                        {isSubmitting ? '提交中...' : '提交留言'}
+                        {isSubmitting ? homeT('contactSection.contactForm.submittingButton') : homeT('contactSection.contactForm.submitButton')}
                       </button>
                     </div>
                   </form>
