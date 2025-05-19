@@ -284,7 +284,7 @@ export default function Page() {
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-2">关于上海万博集</h2>
+            <h2 className="text-3xl font-bold mb-2">关于WBG万博集</h2>
             <div className="w-20 h-1 bg-blue-500 mx-auto"></div>
           </div>
 
@@ -300,7 +300,7 @@ export default function Page() {
             </div>
             <div className="md:w-1/2">
               <p className="text-lg leading-relaxed mb-8">
-                上海万博集科技有限公司是减振及流体控制产品的供应商，致力于创造和供应创新高效节能的产品，满足客户利益以及市场快速变化的需求，业务覆盖水工业，节能产品及流体控制、减振降噪、气流管理等行业。
+                WBG万博集科技有限公司是减振及流体控制产品的供应商，致力于创造和供应创新高效节能的产品，满足客户利益以及市场快速变化的需求，业务覆盖水工业，节能产品及流体控制、减振降噪、气流管理等行业。
               </p>
               <p className="text-lg leading-relaxed mb-8">
                 自公司创立以来，公司致力于供应高效节能产品，同时在减振领域持续创新。秉承创造卓越，公司获得了ISO9001,ISO14001,ISO18001等认证，以保证益于环境，无间服务，客户利益。

@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 export default function VisionPage() {
   const companyInfo = [
-    { label: "公司名称", value: "上海万博集科技有限公司" },
+    { label: "公司名称", value: "WBG万博集科技有限公司" },
     { label: "外文名", value: "Whcon (Beijing) Fluid Systems Co., Ltd" },
     { label: "成立于", value: "2014年3月13日" }
   ];
@@ -68,9 +68,9 @@ export default function VisionPage() {
             >
               <div className="mb-12 flex flex-col md:flex-row gap-8">
                 <div className="md:w-1/2">
-                  <h2 className="text-3xl font-bold mb-6">上海万博集科技有限公司</h2>
+                  <h2 className="text-3xl font-bold mb-6">WBG万博集科技有限公司</h2>
                   <p className="text-lg mb-4 leading-relaxed">
-                    上海万博集科技有限公司是减振和能效智能解决专家，公司总部设于北京，致力于创造和供应创新高效的产品，满足客户利益以及市场快速变化的需求，业务覆盖水工业、节能产品及流体控制、减振降噪、气流管理等行业。
+                    WBG万博集科技有限公司是减振和能效智能解决专家，公司总部设于北京，致力于创造和供应创新高效的产品，满足客户利益以及市场快速变化的需求，业务覆盖水工业、节能产品及流体控制、减振降噪、气流管理等行业。
                   </p>
                   
                   <div className="bg-gray-50 p-6 rounded-lg my-6">
