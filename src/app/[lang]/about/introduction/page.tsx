@@ -99,9 +99,6 @@ export default function IntroductionPage() {
                   <p className="text-lg mb-4 leading-relaxed">
                     {introT('paragraph2')}
                   </p>
-                  <p className="text-lg leading-relaxed">
-                    {introT('paragraph3')}
-                  </p>
                 </div>
                 <div className="md:w-1/2">
                   <Image 

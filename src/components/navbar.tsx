@@ -218,7 +218,7 @@ export function Navbar() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <Link href="/" className="flex items-center">
+            <Link href="/" locale={currentLocale} className="flex items-center">
               <div className="h-16 w-auto relative">
                 {/* 使用public文件夹下的logo图片 */}
                 <Image 
@@ -240,6 +240,7 @@ export function Navbar() {
                 <div key={item.id} className="relative group">
                   <Link
                     href={item.href}
+                    locale={currentLocale}
                     className="px-3 py-2 text-gray-800 hover:text-blue-600 rounded-md text-base font-medium transition-colors flex items-center"
                   >
                     {item.name}
@@ -256,6 +257,7 @@ export function Navbar() {
                           <Link
                             key={subIndex}
                             href={subItem.href}
+                            locale={currentLocale}
                             className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600"
                           >
                             {subItem.name}
@@ -355,6 +357,7 @@ export function Navbar() {
                 <div className="flex justify-between items-center">
                   <Link
                     href={item.href}
+                    locale={currentLocale}
                     className="py-3 block text-gray-800 font-medium"
                     onClick={() => !hasSubMenus(item) && setIsMenuOpen(false)}
                   >
@@ -380,6 +383,7 @@ export function Navbar() {
                       <Link
                         key={subIndex}
                         href={subItem.href}
+                        locale={currentLocale}
                         className="block py-2 text-gray-600 hover:text-blue-600"
                         onClick={handleSubMenuClick}
                       >

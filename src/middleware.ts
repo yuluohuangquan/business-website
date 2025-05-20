@@ -5,7 +5,7 @@ const intlMiddleware = createMiddleware({
   defaultLocale,
   pathnames,
   locales,
-  localeDetection: false
+  localeDetection: true
 });
 
 // 创建一个中间件函数，它会跳过对 /api/ 的请求
