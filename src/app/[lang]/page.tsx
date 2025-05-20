@@ -10,6 +10,7 @@ export default function Page() {
   // 使用翻译hook
   const t = useTranslations();
   const homeT = useTranslations('Home');
+  const companyT = useTranslations('CompanyDetail');
 
   // 创建品牌数据
   const brands = [
@@ -150,7 +151,7 @@ export default function Page() {
     }
   };
 
-  return (
+    return (
     <div className="w-full">
       {/* Hero Section - 使用轮播图组件 */}
       <HeroSlider />
@@ -306,10 +307,10 @@ export default function Page() {
             </div>
             <div className="md:w-1/2">
               <p className="text-lg leading-relaxed mb-8">
-                {homeT('aboutSection.paragraph1')}
+                {companyT('description')}
               </p>
               <p className="text-lg leading-relaxed mb-8">
-                {homeT('aboutSection.paragraph2')}
+                {companyT('detailedDescription')}
               </p>
               <Link href="/about" className="inline-block px-6 py-3 border border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white transition-colors rounded-md">
                 {homeT('aboutSection.cta')}
@@ -356,19 +357,19 @@ export default function Page() {
                 <ul className="space-y-4">
                   <li className="flex items-start">
                     <span className="mr-3 text-blue-400">{homeT('contactSection.contactInfo.address')}</span>
-                    <span>{homeT('contactSection.contactInfo.addressValue')}</span>
+                    <span>{companyT('address')}</span>
                   </li>
                   <li className="flex items-start">
                     <span className="mr-3 text-blue-400">{homeT('contactSection.contactInfo.phone')}</span>
-                    <span>{homeT('contactSection.contactInfo.phoneValue')}</span>
+                    <span>{companyT('phone')}</span>
                   </li>
                   <li className="flex items-start">
                     <span className="mr-3 text-blue-400">{homeT('contactSection.contactInfo.email')}</span>
-                    <span>{homeT('contactSection.contactInfo.emailValue')}</span>
+                    <span>{companyT('email')}</span>
                   </li>
                   <li className="flex items-start">
                     <span className="mr-3 text-blue-400">{homeT('contactSection.contactInfo.workHours')}</span>
-                    <span>{homeT('contactSection.contactInfo.workHoursValue')}</span>
+                    <span>{companyT('workHours')}</span>
                   </li>
                 </ul>
 

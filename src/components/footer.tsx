@@ -4,6 +4,7 @@ import { useTranslations } from 'next-intl';
 
 export function Footer() {
   const t = useTranslations('Footer');
+  const companyT = useTranslations('CompanyDetail');
   const currentYear = new Date().getFullYear();
 
   return (
@@ -12,9 +13,9 @@ export function Footer() {
         {/* 顶部 Logo 和导航区域 */}
         <div className="flex flex-col md:flex-row md:justify-between mb-8">
           <div className="mb-6 md:mb-0">
-            <h2 className="text-2xl font-bold text-white mb-4">{t('companyName')}</h2>
+            <h2 className="text-2xl font-bold text-white mb-4">{companyT('shortName')}</h2>
             <p className="text-gray-400 max-w-md">
-              {t('companyDescription')}
+              {companyT('detailedDescription')}
             </p>
           </div>
 
@@ -115,7 +116,7 @@ export function Footer() {
               {t('copyright.text', { year: currentYear })}
             </p>
             <div className="flex flex-col md:flex-row items-center gap-4">
-              <span className="text-gray-500 text-sm">{t('copyright.certification')}</span>
+              <span className="text-gray-500 text-sm">{t('copyright.certification')}: {companyT('certification')}</span>
             </div>
           </div>
         </div>

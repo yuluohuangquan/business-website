@@ -8,6 +8,7 @@ import { useTranslations } from 'next-intl';
 
 export default function ContactPage() {
   const t = useTranslations('Contact');
+  const companyT = useTranslations('CompanyDetail');
   const params = useParams();
   const searchParams = useSearchParams();
   const [formData, setFormData] = useState({

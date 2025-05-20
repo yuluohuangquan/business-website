@@ -9,6 +9,7 @@ export default function AboutPage() {
   const t = useTranslations('About');
   const introT = useTranslations('About.introduction.section');
   const visionT = useTranslations('About.vision.section');
+  const companyT = useTranslations('CompanyDetail');
 
   return (
     <div className="w-full">
@@ -58,10 +59,10 @@ export default function AboutPage() {
                   transition={{ duration: 0.5 }}
                 >
                   <p className="text-lg mb-6 leading-relaxed">
-                    {introT('paragraph1')}
+                    {companyT('description')}
                   </p>
                   <p className="text-lg mb-6 leading-relaxed">
-                    {introT('paragraph2')}
+                    {companyT('detailedDescription')}
                   </p>
                 </motion.div>
               </div>
@@ -104,13 +105,13 @@ export default function AboutPage() {
                   transition={{ duration: 0.5 }}
                 >
                   <p className="text-lg mb-6 leading-relaxed">
-                    {visionT('paragraph1')}
+                    {companyT('description')}
                   </p>
                   <p className="text-lg mb-6 leading-relaxed">
-                    {visionT('paragraph2')}
+                    {companyT('detailedDescription')}
                   </p>
                   <p className="text-lg leading-relaxed">
-                    {visionT('visionStatement')}
+                    {companyT('vision')}
                   </p>
                 </motion.div>
               </div>

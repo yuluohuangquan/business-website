@@ -8,7 +8,9 @@ export default function VisionPage() {
   // 使用翻译hook
   const t = useTranslations('About');
   const visionT = useTranslations('About.vision.section');
+  const companyT = useTranslations('CompanyDetail');
 
+  // 分支机构 - 直接在组件中定义，而不是从i18n获取
   const branches = [
     "上海", "广州", "长沙", "重庆", "成都", "沈阳", "合肥"
   ];
@@ -17,35 +19,35 @@ export default function VisionPage() {
   const companyInfo = [
     { 
       label: visionT('companyInfo.items.0.label'), 
-      value: visionT('companyInfo.items.0.value') 
+      value: companyT('name') 
     },
     { 
       label: visionT('companyInfo.items.1.label'), 
-      value: visionT('companyInfo.items.1.value') 
+      value: companyT('englishName') 
     },
     { 
       label: visionT('companyInfo.items.2.label'), 
-      value: visionT('companyInfo.items.2.value') 
+      value: companyT('founded') 
     }
   ];
 
-  // 产品数据
+  // 产品数据 - 直接在组件中定义，而不是从i18n获取
   const products = [
     {
-      title: visionT('products.0.title'),
-      description: visionT('products.0.description')
+      title: companyT('productLine1Title'),
+      description: companyT('productLine1Description')
     },
     {
-      title: visionT('products.1.title'),
-      description: visionT('products.1.description')
+      title: companyT('productLine2Title'),
+      description: companyT('productLine2Description')
     },
     {
-      title: visionT('products.2.title'),
-      description: visionT('products.2.description')
+      title: companyT('productLine3Title'),
+      description: companyT('productLine3Description')
     },
     {
-      title: visionT('products.3.title'),
-      description: visionT('products.3.description')
+      title: companyT('productLine4Title'),
+      description: companyT('productLine4Description')
     }
   ];
 
@@ -103,9 +105,9 @@ export default function VisionPage() {
             >
               <div className="mb-12 flex flex-col md:flex-row gap-8">
                 <div className="md:w-1/2">
-                  <h2 className="text-3xl font-bold mb-6">{visionT('companyName')}</h2>
+                  <h2 className="text-3xl font-bold mb-6">{companyT('name')}</h2>
                   <p className="text-lg mb-4 leading-relaxed">
-                    {visionT('paragraph1')}
+                    {companyT('description')}
                   </p>
                   
                   <div className="bg-gray-50 p-6 rounded-lg my-6">
@@ -121,7 +123,7 @@ export default function VisionPage() {
                   </div>
 
                   <p className="text-lg mb-4 leading-relaxed">
-                    {visionT('paragraph2')}
+                    {companyT('detailedDescription')}
                   </p>
                 </div>
                 <div className="md:w-1/2">
@@ -133,10 +135,10 @@ export default function VisionPage() {
                     className="rounded-lg shadow-lg w-full h-auto"
                   />
                   <p className="text-lg mt-6 leading-relaxed">
-                    {visionT('paragraph3')}
+                    {companyT('additionalInfo1')}
                   </p>
                   <p className="text-lg mt-4 leading-relaxed">
-                    {visionT('paragraph4')}
+                    {companyT('additionalInfo2')}
                   </p>
                 </div>
               </div>
@@ -180,7 +182,7 @@ export default function VisionPage() {
               <div className="bg-blue-900 text-white p-8 rounded-lg shadow-lg">
                 <h2 className="text-3xl font-bold mb-6">{visionT('visionTitle')}</h2>
                 <p className="text-xl leading-relaxed">
-                  {visionT('visionStatement')}
+                  {companyT('vision')}
                 </p>
               </div>
             </motion.div>

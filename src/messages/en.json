@@ -393,5 +393,38 @@
       "chinese": "中文",
       "english": "English"
     }
+  },
+  "CompanyDetail": {
+    "name": "WBG Technology Co., Ltd.",
+    "shortName": "WBG Technology",
+    "englishName": "Whcon (Beijing) Fluid Systems Co., Ltd",
+    "founded": "March 13, 2014",
+    "description": "Shanghai WBG Intelligent Technology Co., Ltd. is a leading liquid cooling and HVAC solutions provider, focusing on providing innovative energy-efficient products for intelligent computing centers, data centers, computer room temperature control, and water industry.",
+    "detailedDescription": "With continuous innovation in liquid cooling technology and global business layout (covering China, USA, Europe, and Southeast Asia), the company ensures quality through ISO9001/14001/18001 certification systems, committed to creating long-term value for customers through cutting-edge temperature control technology and promoting sustainable industry development.",
+    "vision": "The company's vision is to bring sustained efficiency benefits to customers through high-performance products and services, and to fulfill social responsibility for the benefit of the environment.",
+    "address": "Building 26, Xingyun Economic Zone, 3199 Zhenbei Road, Putuo District, Shanghai",
+    "phone": "021-65879859",
+    "email": "wbg@wbgai.com",
+    "workHours": "Monday to Friday 9:00-18:00",
+    "certification": "ISO9001/ISO14001/ISO45001",
+    
+    "businessArea1Title": "Water Industry",
+    "businessArea1Description": "Providing energy-efficient products and control solutions related to the water industry, helping customers achieve efficient use of water resources.",
+    "businessArea2Title": "Fluid Control",
+    "businessArea2Description": "Professional fluid control products and solutions, applied to various industrial and commercial scenarios, ensuring efficient system operation.",
+    "businessArea3Title": "Vibration Reduction",
+    "businessArea3Description": "Providing advanced vibration reduction technology and noise reduction solutions, improving the working environment and enhancing system stability.",
+    
+    "productLine1Title": "General Valves",
+    "productLine1Description": "High-quality general valves meeting various fluid control needs, reliable quality and long service life.",
+    "productLine2Title": "Electric Valves",
+    "productLine2Description": "Intelligent electric valves, precise control, remote operation, suitable for smart buildings and automation systems.",
+    "productLine3Title": "Hydraulic Control Valves",
+    "productLine3Description": "Professional hydraulic control valves for network pressure control, flow regulation and hydraulic balance scenarios.",
+    "productLine4Title": "Balance Valves",
+    "productLine4Description": "High-precision balance valves, achieving optimal hydraulic balance, improving energy efficiency and saving energy.",
+    
+    "additionalInfo1": "Supplying various products including general valves, electric valves, hydraulic control valves, balance valves, etc., capable of covering various needs of fluid systems.",
+    "additionalInfo2": "The company has established business branches in Shanghai, Guangzhou, Changsha, Chongqing, Chengdu, Shenyang, Hefei and other places to ensure seamless service for customers."
   }
 }

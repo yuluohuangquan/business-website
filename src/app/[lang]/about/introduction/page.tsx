@@ -8,6 +8,7 @@ export default function IntroductionPage() {
   // 使用翻译hook
   const t = useTranslations('About');
   const introT = useTranslations('About.introduction.section');
+  const companyT = useTranslations('CompanyDetail');
 
   // 证书数据
   const certifications = [
@@ -16,22 +17,22 @@ export default function IntroductionPage() {
     { id: 3, name: "ISO18001", image: "https://picsum.photos/300/400?random=3" }
   ];
 
-  // 业务数据
+  // 业务数据 - 直接在组件中定义，而不是从i18n获取
   const businesses = [
     {
-      id: introT('businesses.0.id'),
-      title: introT('businesses.0.title'),
-      description: introT('businesses.0.description')
+      id: "01",
+      title: companyT('businessArea1Title'),
+      description: companyT('businessArea1Description')
     },
     {
-      id: introT('businesses.1.id'),
-      title: introT('businesses.1.title'),
-      description: introT('businesses.1.description')
+      id: "02",
+      title: companyT('businessArea2Title'),
+      description: companyT('businessArea2Description')
     },
     {
-      id: introT('businesses.2.id'),
-      title: introT('businesses.2.title'),
-      description: introT('businesses.2.description')
+      id: "03",
+      title: companyT('businessArea3Title'),
+      description: companyT('businessArea3Description')
     }
   ];
 
@@ -92,12 +93,12 @@ export default function IntroductionPage() {
             >
               <div className="mb-12 flex flex-col md:flex-row gap-8">
                 <div className="md:w-1/2">
-                  <h2 className="text-3xl font-bold mb-6">WBG万博集科技有限公司</h2>
+                  <h2 className="text-3xl font-bold mb-6">{companyT('name')}</h2>
                   <p className="text-lg mb-4 leading-relaxed">
-                    {introT('paragraph1')}
+                    {companyT('description')}
                   </p>
                   <p className="text-lg mb-4 leading-relaxed">
-                    {introT('paragraph2')}
+                    {companyT('detailedDescription')}
                   </p>
                 </div>
                 <div className="md:w-1/2">

@@ -14,6 +14,7 @@ const contactInfo = {
 
 export default function RecruitmentPage() {
   const t = useTranslations('Recruitment');
+  const companyT = useTranslations('CompanyDetail');
   const [selectedDepartment, setSelectedDepartment] = useState(t('all'));
   const [showContact, setShowContact] = useState(false);
 
@@ -130,7 +131,7 @@ export default function RecruitmentPage() {
             <h2 className="text-3xl font-bold text-gray-900 mb-4">{t('about.title')}</h2>
             <div className="w-20 h-1 bg-blue-600 mx-auto mb-6"></div>
             <p className="max-w-3xl mx-auto text-lg text-gray-600">
-              {t('about.description')}
+              {companyT('description')}
             </p>
           </div>
 
