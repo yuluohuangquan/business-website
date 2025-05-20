@@ -2,6 +2,7 @@
 export interface SubMenuItem {
   name: string;
   href: string;
+  key?: string; // 用于国际化键
 }
 
 export interface NavMenuItem {
@@ -9,53 +10,59 @@ export interface NavMenuItem {
   name: string;
   icon?: any; // 图标组件
   href: string;
+  key?: string; // 用于国际化键
   subMenus?: SubMenuItem[]; // 修改为可选属性
 }
 
-// 导航菜单数据
+// 导航菜单数据 - 现在包含翻译键而不是固定文案
 export const NAV_MENU: NavMenuItem[] = [
   {
     id: 1,
-    name: "关于我们",
+    name: "", // 将由国际化文本替换
     href: "/about",
+    key: "about",
     subMenus: [
-      { name: "公司简介", href: "/about/introduction" },
-      { name: "公司愿景", href: "/about/vision" }
+      { name: "", href: "/about/introduction", key: "introduction" },
+      { name: "", href: "/about/vision", key: "vision" }
     ]
   },
  {
     id: 2,
-    name: "产品中心",
+    name: "", // 将由国际化文本替换
     href: "/product",
+    key: "product",
     subMenus: [
-      { name: "盖雷智阀", href: "/product/list/wa" },
-      { name: "JohnsonControls", href: "/product/list/johnsoncontrols" },
-      { name: "FlowCon", href: "/product/list/flowcon" },
-      { name: "WARCO", href: "/product/list/warco" }
+      { name: "", href: "/product/list/wa", key: "wa" },
+      { name: "", href: "/product/list/johnsoncontrols", key: "johnsoncontrols" },
+      { name: "", href: "/product/list/flowcon", key: "flowcon" },
+      { name: "", href: "/product/list/warco", key: "warco" }
     ]
   },
   // {
   //   id: 3,
   //   name: "服务中心",
   //   href: "/service",
+  //   key: "service",
   //   subMenus: [
-  //     { name: "下载中心", href: "/service/download" },
-  //     { name: "技术中心", href: "/service/tech" }
+  //     { name: "下载中心", href: "/service/download", key: "download" },
+  //     { name: "技术中心", href: "/service/tech", key: "tech" }
   //   ]
   // },
   {
     id: 4,
-    name: "招贤纳士",
-    href: "/recruitment"
+    name: "", // 将由国际化文本替换
+    href: "/recruitment",
+    key: "recruitment"
     // 没有子菜单
   },
   {
     id: 5,
-    name: "联系我们",
+    name: "", // 将由国际化文本替换
     href: "/contact",
+    key: "contact",
     subMenus: [
-      { name: "联系我们", href: "/contact#contact1" },
-      { name: "索取报价", href: "/contact#contact2" }
+      { name: "", href: "/contact#contact1", key: "contactUs" },
+      { name: "", href: "/contact#contact2", key: "requestQuote" }
     ]
   }
 ]; 
@@ -63,7 +70,7 @@ export const NAV_MENU: NavMenuItem[] = [
 // 产品子类别定义
 export const PRODUCT_CATEGORIES = {
   wa: {
-    name: "盖雷智阀",
+    name: "盖雷智阀", // 这些也可以国际化
     subCategories: [
       { name: "闸阀", href: "/product/list/wa/valve" },
       { name: "蝶阀", href: "/product/list/wa/butterfly" },

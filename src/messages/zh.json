@@ -359,5 +359,39 @@
       "title": "合作伙伴及其资质",
       "viewCredentials": "查看资质"
     }
+  },
+  "Navigation": {
+    "menu": {
+      "about": "关于我们",
+      "product": "产品中心",
+      "service": "服务中心",
+      "recruitment": "招贤纳士",
+      "contact": "联系我们"
+    },
+    "submenu": {
+      "about": {
+        "introduction": "公司简介",
+        "vision": "公司愿景"
+      },
+      "product": {
+        "wa": "盖雷智阀",
+        "johnsoncontrols": "JohnsonControls",
+        "flowcon": "FlowCon",
+        "warco": "WARCO"
+      },
+      "service": {
+        "download": "下载中心",
+        "tech": "技术中心"
+      },
+      "contact": {
+        "contactUs": "联系我们",
+        "requestQuote": "索取报价"
+      }
+    },
+    "language": {
+      "switchLanguage": "切换语言",
+      "chinese": "中文",
+      "english": "English"
+    }
   }
 }

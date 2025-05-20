@@ -63,9 +63,6 @@ export default function AboutPage() {
                   <p className="text-lg mb-6 leading-relaxed">
                     {introT('paragraph2')}
                   </p>
-                  <p className="text-lg leading-relaxed">
-                    {introT('paragraph3')}
-                  </p>
                 </motion.div>
               </div>
               <div className="md:w-1/2">

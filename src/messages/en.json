@@ -1,30 +1,397 @@
 {
   "Recruitment": {
-    "joinUs": "Join Our Team",
-    "subtitle": "At Whcon Technology, we offer a broad platform for development and an excellent team atmosphere",
+    "joinUs": "Join Us",
+    "subtitle": "At WBG Technology, we offer a broad platform for development and an excellent team atmosphere. We look forward to your joining.",
     "contactUs": "Contact Us",
     "phone": "Phone",
     "close": "Close",
     "all": "All",
-    "tech": "Technical",
-    "product": "Product",
-    "marketing": "Marketing",
-    "operations": "Operations",
+    "tech": "Technical Department",
+    "product": "Product Department",
+    "marketing": "Marketing Department",
+    "operations": "Operations Department",
     "requirementsLabel": "Requirements",
-    "apply": "Apply Now",
+    "apply": "Apply for Position",
     "jobs": {
       "frontend": {
-        "title": "Frontend Developer",
+        "title": "Front-end Developer",
         "location": "Beijing",
         "type": "Full-time",
-        "requirements": "Bachelor's degree or above in Computer Science or related field|Proficient in HTML, CSS, JavaScript and other frontend technologies|Experience with React/Vue frameworks|Good teamwork abilities"
+        "requirements": "Bachelor's degree or above in Computer Science or related fields|Proficient in HTML, CSS, JavaScript and other front-end technologies|Experience with React/Vue frameworks|Good teamwork skills"
       },
       "pm": {
         "title": "Product Manager",
         "location": "Beijing",
         "type": "Full-time",
-        "requirements": "Bachelor's degree or above, with 3+ years of relevant experience|Excellent communication and project management skills|Familiar with product development process|Experience in fluid control or related industries preferred"
+        "requirements": "Bachelor's degree or above with 3+ years of relevant experience|Excellent communication and project management skills|Familiar with product development processes|Experience in fluid control or related industries preferred"
+      },
+      "marketing": {
+        "title": "Marketing Specialist",
+        "location": "Beijing",
+        "type": "Full-time",
+        "requirements": "Bachelor's degree or above in Marketing or related fields|Excellent copywriting and communication skills|Familiar with digital marketing and social media operations",
+        "responsibilities": "Responsible for company product marketing|Planning and executing marketing activities|Analyzing market trends and competitors"
+      },
+      "operations": {
+        "title": "Operations Manager",
+        "location": "Beijing",
+        "type": "Full-time",
+        "requirements": "3+ years of relevant work experience|Excellent project management skills|Good communication and coordination abilities",
+        "responsibilities": "Responsible for daily company operations management|Optimizing operational processes to improve efficiency|Coordinating work across departments to ensure goals are met"
+      }
+    },
+    "about": {
+      "title": "About Us",
+      "description": "WBG Technology Co., Ltd. is a professional supplier of vibration reduction and fluid control products, dedicated to creating and supplying innovative, efficient, and energy-saving products that meet customer interests and rapidly changing market demands. We value talent development and look forward to growing together with you.",
+      "culture": {
+        "title": "Our Corporate Culture",
+        "description1": "At WBG, we uphold the concept of \"Creating Excellence\", pursuing continuous improvement in product quality and customer satisfaction. We have a professional international team providing the highest quality service and solutions for our customers.",
+        "description2": "We provide employees with an open, equal, and collaborative work environment, encouraging innovation and self-development. By joining us, you will have the opportunity to participate in internationally leading projects, showcase your talents and potential."
+      },
+      "values": {
+        "0": {
+          "title": "Innovation",
+          "description": "We are committed to continuous innovation in fluid control and vibration reduction, meeting customer needs with advanced technology",
+          "icon": "💡"
+        },
+        "1": {
+          "title": "Quality",
+          "description": "Strict ISO9001/ISO14001/ISO45001 certification ensures our products and services meet international standards",
+          "icon": "✓"
+        },
+        "2": {
+          "title": "Responsibility",
+          "description": "We value environmental responsibility, providing energy-efficient solutions that reduce resource waste",
+          "icon": "🌱"
+        },
+        "3": {
+          "title": "Growth",
+          "description": "Providing employees with broad development opportunities and professional training, growing together and creating value",
+          "icon": "📈"
+        }
+      }
+    },
+    "jobList": {
+      "title": "Job Listings",
+      "description": "We offer competitive salary packages and comprehensive benefits. We welcome talented professionals from all fields to join our team",
+      "responsibilitiesLabel": "Job Responsibilities"
+    },
+    "teamShowcase": {
+      "title": "Team Showcase",
+      "description": "Here, you will work with a group of outstanding colleagues, challenge yourself, and realize your value"
+    },
+    "ctaSection": {
+      "title": "Join Us, Create the Future Together",
+      "description": "We look forward to growing with talented and passionate individuals, together making WBG a leader in the industry",
+      "buttonText": "Apply Now"
+    },
+    "contactModal": {
+      "email": "hr@company.com",
+      "phone": "+86 123-4567-8900",
+      "learnMore": "You can also learn more about our company through the following:",
+      "viewCompanyIntro": "View Company Introduction →",
+      "viewCompanyVision": "Learn About Company Vision →"
+    }
+  },
+  "Contact": {
+    "pageTitle": "Contact Us",
+    "subtitle": "Seamless Service, Customer First",
+    "tabs": {
+      "contactUs": "Contact Us",
+      "requestQuote": "Request a Quote"
+    },
+    "contactSection": {
+      "title": "Contact Us",
+      "officeLocations": {
+        "beijing": {
+          "id": "beijing",
+          "city": "Beijing",
+          "phone": "010-85591869",
+          "email": "info@whcon.com",
+          "address": "2nd Floor, Tower A, Shouhe International Building, Economic and Technological Development Zone, Daxing District, Beijing"
+        },
+        "shanghai": {
+          "id": "shanghai",
+          "city": "Shanghai",
+          "phone": "13701698143",
+          "email": "keungluck@warcofs.com",
+          "address": "Room 1005, Building 8, Yinghua International, 2899 Guangfu West Road, Putuo District, Shanghai"
+        },
+        "shenzhen": {
+          "id": "shenzhen",
+          "city": "Shenzhen",
+          "phone": "13823733906",
+          "email": "tom@warcofs.com",
+          "address": "Room 232, Qianhai Science and Technology Innovation Center, Xingfu Harbor, Xixiang, Bao'an District, Shenzhen, Guangdong"
+        },
+        "shenyang": {
+          "id": "shenyang",
+          "city": "Shenyang",
+          "phone": "15840060708",
+          "email": "zhyc@warcofs.com",
+          "address": "6-3 (1-12-3), Qixia Street, Hunnan District, Shenyang, Liaoning"
+        }
+      },
+      "labels": {
+        "phone": "Phone: ",
+        "email": "Email: ",
+        "address": "Address: "
+      }
+    },
+    "quoteSection": {
+      "title": "Request a Quote",
+      "form": {
+        "name": "Your Name",
+        "email": "Email Address",
+        "phone": "Contact Phone",
+        "reason": "Inquiry Reason",
+        "reasonPlaceholder": "Please select a reason",
+        "reasonOptions": {
+          "productInquiry": "Product Inquiry",
+          "techSupport": "Technical Support",
+          "partnership": "Partnership",
+          "other": "Other"
+        },
+        "details": "Request Details",
+        "detailsPlaceholder": "Please describe your requirements in detail...",
+        "submitButton": "Submit",
+        "submittingButton": "Submitting...",
+        "successTitle": "Submission Successful",
+        "successMessage": "Thank you for your inquiry. We will contact you as soon as possible!"
       }
     }
+  },
+  "Footer": {
+    "companyName": "WBG Technology",
+    "companyDescription": "Committed to creating long-term value for customers through cutting-edge temperature control technology, promoting sustainable development in the industry.",
+    "sections": {
+      "serviceCenter": "Service Center",
+      "productCenter": "Product Center",
+      "newsCenter": "News Center"
+    },
+    "products": {
+      "wa": "WA Valves",
+      "johnsoncontrols": "JohnsonControls",
+      "flowcon": "FlowCon",
+      "warco": "WARCO"
+    },
+    "links": {
+      "title": "Partner Links"
+    },
+    "copyright": {
+      "text": "Copyright © {year} WBG All rights reserved.",
+      "certification": "Enterprise Certification: ISO9001/ISO14001/ISO45001"
+    }
+  },
+  "Home": {
+    "brandSection": {
+      "title": "Brand Showcase",
+      "brands": {
+        "0": {
+          "name": "KeenCool",
+          "description": "Hangzhou KeenCool Intelligent Technology Co., Ltd. is a leading immersion liquid cooling technology enterprise in China, focusing on efficient cooling solutions for data centers, communication base stations, and energy storage scenarios. With proprietary cooling liquid and intelligent control technology, it achieves PUE as low as 1.08, supporting \"dual carbon\" goals, and collaborates deeply with leading enterprises like State Grid and China Telecom to promote the scale application of liquid cooling technology",
+          "cta": "Brand Products"
+        },
+        "1": {
+          "name": "Canatal",
+          "description": "Nanjing Canatal focuses on computer room air conditioning and precision temperature control, providing efficient energy-saving refrigeration solutions. Products include precision air conditioning, chiller units and more, winning global customer trust with innovative technology, stable performance and intelligent services, supporting stable development of data centers, communications and other critical industries.",
+          "cta": "Brand Products"
+        },
+        "2": {
+          "name": "Watts",
+          "description": "Founded in the United States in 1874, WATTS is a global leader in water industry solutions, focusing on developing high-quality valves, fittings, and water treatment products. With innovative technology and strict standards, it safeguards water safety for homes and businesses. Known for durability and energy efficiency, its service network covers the globe, committed to providing reliable and efficient water system support for modern living.",
+          "cta": "Brand Products"
+        },
+        "3": {
+          "name": "IVCO",
+          "description": "Shanghai IVCO Valve Co., Ltd. is a professional valve manufacturer located in Shanghai Qingpu Industrial Park. Products include nuclear power valves, butterfly valves, ball valves, etc. With ISO9001 and TS certification, multiple patents and high-tech enterprise titles, it focuses on nuclear power, petrochemical and other fields, winning domestic and international customer trust through technology, quality and service.",
+          "cta": "Brand Products"
+        }
+      }
+    },
+    "serviceSection": {
+      "title": "Service Center",
+      "services": {
+        "0": {
+          "title": "Download Center",
+          "subtitle": "DOWNLOAD CENTER",
+          "cta": "View Details"
+        },
+        "1": {
+          "title": "Technology Center",
+          "subtitle": "TECHNOLOGY CENTER",
+          "cta": "View Details"
+        }
+      }
+    },
+    "newsSection": {
+      "title": "News & Updates",
+      "viewMore": "More Updates",
+      "viewDetails": "View Details"
+    },
+    "aboutSection": {
+      "title": "About WBG",
+      "paragraph1": "Shanghai WBG Intelligent Technology Co., Ltd. is a leading liquid cooling and HVAC solutions provider, focusing on providing innovative energy-efficient products for intelligent computing centers, data centers, computer room temperature control, and water industry.",
+      "paragraph2": "With continuous innovation in liquid cooling technology and global business layout (covering China, USA, Europe, and Southeast Asia), the company ensures quality through ISO9001/14001/18001 certification systems, committed to creating long-term value for customers through cutting-edge temperature control technology and promoting sustainable industry development.",
+      "cta": "View More"
+    },
+    "clientsSection": {
+      "title": "Our Clients"
+    },
+    "contactSection": {
+      "title": "Contact Us",
+      "contactInfo": {
+        "title": "Contact Information",
+        "address": "Address: ",
+        "addressValue": "Building 26, Xingyun Economic Zone, 3199 Zhenbei Road, Putuo District, Shanghai",
+        "phone": "Phone: ",
+        "phoneValue": "021-65879859",
+        "email": "Email: ",
+        "emailValue": "wbg@wbgai.com",
+        "workHours": "Working Hours: ",
+        "workHoursValue": "Monday to Friday 9:00-18:00"
+      },
+      "contactForm": {
+        "title": "Leave a Message",
+        "name": "Name",
+        "namePlaceholder": "Your name",
+        "email": "Email",
+        "emailPlaceholder": "Your email",
+        "phone": "Phone",
+        "phonePlaceholder": "Your phone number",
+        "message": "Message",
+        "messagePlaceholder": "Please enter your message",
+        "submitButton": "Submit",
+        "submittingButton": "Submitting...",
+        "successTitle": "Submission Successful",
+        "successMessage": "Thank you for your inquiry. We will contact you as soon as possible!"
+      }
+    }
+  },
+  "About": {
+    "pageTitle": "About Us",
+    "subtitle": "Seamless Service, Customer First",
+    "navigation": {
+      "introduction": "Company Introduction",
+      "vision": "Company Vision",
+      "back": "Back"
+    },
+    "introduction": {
+      "section": {
+        "title": "Company Introduction",
+        "subtitle": "INTRODUCTION",
+        "paragraph1": "Shanghai WBG Intelligent Technology Co., Ltd. is a leading liquid cooling and HVAC solutions provider, focusing on providing innovative energy-efficient products for intelligent computing centers, data centers, computer room temperature control, and water industry.",
+        "paragraph2": "With continuous innovation in liquid cooling technology and global business layout (covering China, USA, Europe, and Southeast Asia), the company ensures quality through ISO9001/14001/18001 certification systems, committed to creating long-term value for customers through cutting-edge temperature control technology and promoting sustainable industry development.",
+        "viewMore": "View More",
+        "businessTitle": "Our Business",
+        "businesses": {
+          "0": {
+            "id": "01",
+            "title": "Water Industry",
+            "description": "Providing energy-efficient products and control solutions related to the water industry, helping customers achieve efficient use of water resources."
+          },
+          "1": {
+            "id": "02",
+            "title": "Fluid Control",
+            "description": "Professional fluid control products and solutions, applied to various industrial and commercial scenarios, ensuring efficient system operation."
+          },
+          "2": {
+            "id": "03",
+            "title": "Vibration Reduction",
+            "description": "Providing advanced vibration reduction technology and noise reduction solutions, improving the working environment and enhancing system stability."
+          }
+        },
+        "certificationsTitle": "Our Qualifications",
+        "partnersTitle": "Partners"
+      }
+    },
+    "vision": {
+      "section": {
+        "title": "Company Vision",
+        "subtitle": "COMPANY VISION",
+        "companyName": "WBG Technology Co., Ltd.",
+        "paragraph1": "Shanghai WBG Intelligent Technology Co., Ltd. is a leading liquid cooling and HVAC solutions provider, focusing on providing innovative energy-efficient products for intelligent computing centers, data centers, computer room temperature control, and water industry.",
+        "paragraph2": "With continuous innovation in liquid cooling technology and global business layout (covering China, USA, Europe, and Southeast Asia), the company ensures quality through ISO9001/14001/18001 certification systems, committed to creating long-term value for customers through cutting-edge temperature control technology and promoting sustainable industry development.",
+        "paragraph3": "Supplying various products including general valves, electric valves, hydraulic control valves, balance valves, etc., capable of covering various needs of fluid systems.",
+        "paragraph4": "The company has established business branches in Shanghai, Guangzhou, Changsha, Chongqing, Chengdu, Shenyang, Hefei and other places to ensure seamless service for customers.",
+        "visionStatement": "The company's vision is to bring sustained efficiency benefits to customers through high-performance products and services, and to fulfill social responsibility for the benefit of the environment.",
+        "companyInfo": {
+          "title": "Company Information",
+          "items": {
+            "0": {
+              "label": "Company Name",
+              "value": "WBG Technology Co., Ltd."
+            },
+            "1": {
+              "label": "Foreign Name",
+              "value": "Whcon (Beijing) Fluid Systems Co., Ltd"
+            },
+            "2": {
+              "label": "Founded",
+              "value": "March 13, 2014"
+            }
+          }
+        },
+        "branchesTitle": "Business Branches",
+        "productsTitle": "Our Products",
+        "products": {
+          "0": {
+            "title": "General Valves",
+            "description": "High-quality general valves meeting various fluid control needs, reliable quality and long service life."
+          },
+          "1": {
+            "title": "Electric Valves",
+            "description": "Intelligent electric valves, precise control, remote operation, suitable for smart buildings and automation systems."
+          },
+          "2": {
+            "title": "Hydraulic Control Valves",
+            "description": "Professional hydraulic control valves for network pressure control, flow regulation and hydraulic balance scenarios."
+          },
+          "3": {
+            "title": "Balance Valves",
+            "description": "High-precision balance valves, achieving optimal hydraulic balance, improving energy efficiency and saving energy."
+          }
+        },
+        "visionTitle": "Company Vision"
+      }
+    },
+    "partners": {
+      "title": "Partners and Qualifications",
+      "viewCredentials": "View Credentials"
+    }
+  },
+  "Navigation": {
+    "menu": {
+      "about": "About Us",
+      "product": "Products",
+      "service": "Services",
+      "recruitment": "Careers",
+      "contact": "Contact Us"
+    },
+    "submenu": {
+      "about": {
+        "introduction": "Company Introduction",
+        "vision": "Company Vision"
+      },
+      "product": {
+        "wa": "WA Valves",
+        "johnsoncontrols": "JohnsonControls",
+        "flowcon": "FlowCon",
+        "warco": "WARCO"
+      },
+      "service": {
+        "download": "Download Center",
+        "tech": "Technology Center"
+      },
+      "contact": {
+        "contactUs": "Contact Us",
+        "requestQuote": "Request a Quote"
+      }
+    },
+    "language": {
+      "switchLanguage": "Switch Language",
+      "chinese": "中文",
+      "english": "English"
+    }
   }
-} 
+}
