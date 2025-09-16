@@ -103,33 +103,12 @@
     "contactSection": {
       "title": "联系我们",
       "officeLocations": {
-        "beijing": {
-          "id": "beijing",
-          "city": "北京",
-          "phone": "010-85591869",
-          "email": "info@whcon.com",
-          "address": "北京市大兴区经济技术开发区首合国际大厦A座2层"
-        },
         "shanghai": {
           "id": "shanghai",
           "city": "上海",
-          "phone": "13701698143",
-          "email": "keungluck@warcofs.com",
-          "address": "上海市普陀区光复西路2899弄赢华国际8号楼1005室"
-        },
-        "shenzhen": {
-          "id": "shenzhen",
-          "city": "深圳",
-          "phone": "13823733906",
-          "email": "tom@warcofs.com",
-          "address": "广东省深圳市宝安区西乡幸福港湾前海科创中心232室"
-        },
-        "shenyang": {
-          "id": "shenyang",
-          "city": "沈阳",
-          "phone": "15840060708",
-          "email": "zhyc@warcofs.com",
-          "address": "辽宁省沈阳市浑南区绮霞街6-3号（1-12-3）"
+          "phone": "021-65879859",
+          "email": "wbg@wbgai.com",
+          "address": "上海市普陀区真北路3199号星云经济区26栋"
         }
       },
       "labels": {

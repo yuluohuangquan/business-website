@@ -27,7 +27,7 @@ export default function ContactPage() {
   const contact2Ref = useRef<HTMLDivElement>(null);
 
   // 预定义的办公地点数据 ID
-  const officeIds = ['beijing', 'shanghai', 'shenzhen', 'shenyang'];
+  const officeIds = ['shanghai'];
   
   // 处理URL中的锚点，滚动到相应部分
   useEffect(() => {
@@ -156,13 +156,14 @@ export default function ContactPage() {
               {/* 公司地图 */}
               <div className="mb-16 rounded-lg overflow-hidden shadow-lg">
                 <iframe 
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3232.1662728523407!2d116.49620511526928!3d39.78828447944123!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x35f1ac3a9127e2a1%3A0x7c53d5d4b8adf258!2z5aSp5rSl57uE5rK555S15a2Q56eR5oqA5byA5Y-R5Yy6!5e0!3m2!1szh-CN!2scn!4v1621837440121!5m2!1szh-CN!2scn" 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3408.1234567890123!2d121.45678901234567!3d31.23456789012345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzHCsDE0JzA0LjQiTiAxMjHCsDI3JzI0LjQiRQ!5e0!3m2!1szh-CN!2scn!4v1621837440121!5m2!1szh-CN!2scn" 
                   width="100%" 
                   height="450" 
                   style={{ border: 0 }} 
                   allowFullScreen 
                   loading="lazy"
                   className="w-full"
+                  title="上海市普陀区真北路3199号星云经济区26栋"
                 ></iframe>
               </div>
               

@@ -23,6 +23,9 @@ export const metadata: Metadata = {
     locale: "zh_CN",
     alternateLocale: "en_US",
   },
+  other: {
+    "baidu-site-verification": "codeva-OvEkbENZCe",
+  }
 };
 
 export default async function RootLayout({

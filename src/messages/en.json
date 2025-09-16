@@ -103,33 +103,12 @@
     "contactSection": {
       "title": "Contact Us",
       "officeLocations": {
-        "beijing": {
-          "id": "beijing",
-          "city": "Beijing",
-          "phone": "010-85591869",
-          "email": "info@whcon.com",
-          "address": "2nd Floor, Tower A, Shouhe International Building, Economic and Technological Development Zone, Daxing District, Beijing"
-        },
         "shanghai": {
           "id": "shanghai",
           "city": "Shanghai",
-          "phone": "13701698143",
-          "email": "keungluck@warcofs.com",
-          "address": "Room 1005, Building 8, Yinghua International, 2899 Guangfu West Road, Putuo District, Shanghai"
-        },
-        "shenzhen": {
-          "id": "shenzhen",
-          "city": "Shenzhen",
-          "phone": "13823733906",
-          "email": "tom@warcofs.com",
-          "address": "Room 232, Qianhai Science and Technology Innovation Center, Xingfu Harbor, Xixiang, Bao'an District, Shenzhen, Guangdong"
-        },
-        "shenyang": {
-          "id": "shenyang",
-          "city": "Shenyang",
-          "phone": "15840060708",
-          "email": "zhyc@warcofs.com",
-          "address": "6-3 (1-12-3), Qixia Street, Hunnan District, Shenyang, Liaoning"
+          "phone": "021-65879859",
+          "email": "wbg@wbgai.com",
+          "address": "No. 26, Xingyun Economic Zone, No. 3199 Zhenbei Road, Putuo District, Shanghai"
         }
       },
       "labels": {
