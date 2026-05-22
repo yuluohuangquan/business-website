@@ -3,70 +3,79 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { HeroSlider } from "@/components";
-import { useState } from "react";
-import { useTranslations } from 'next-intl';
+import { useState, useEffect } from "react";
+import { useTranslations, useLocale } from 'next-intl';
+import {
+  getArticles,
+  getStrapiMediaUrl,
+  type HomeBrandArticle,
+} from "@/lib/strapi";
 
+interface BrandItem {
+  id: number;
+  name: string;
+  description: string;
+  link?: string;
+  image: string;
+}
+
+function mapBrandArticle(article: HomeBrandArticle): BrandItem | null {
+  const imagePath =
+    article.cover?.formats?.medium?.url ??
+    article.cover?.url;
+  const image = getStrapiMediaUrl(imagePath);
+  if (!image) return null;
+
+  return {
+    id: article.id,
+    name: article.title,
+    description: article.content ?? "",
+    link: article.link ?? undefined,
+    image,
+  };
+}
 export default function Page() {
-  // 使用翻译hook
-  const t = useTranslations();
+  const locale = useLocale();
   const homeT = useTranslations('Home');
   const companyT = useTranslations('CompanyDetail');
 
-  // 创建品牌数据
-  const brands = [
-    {
-      id: 1,
-      name: homeT('brandSection.brands.0.name'),
-      description: homeT('brandSection.brands.0.description'),
-      link: "/product/warco",
-      image: "/images/home/brand1.png"
-    },
-    {
-      id: 2,
-      name: homeT('brandSection.brands.1.name'),
-      description: homeT('brandSection.brands.1.description'),
-      link: "/product/flowcon",
-      image: "/images/home/brand2.png"
-    },
-    {
-      id: 3,
-      name: homeT('brandSection.brands.2.name'),
-      description: homeT('brandSection.brands.2.description'),
-      link: "/product/johnson-controls",
-      image: "/images/home/brand3.png"
-    },
-    {
-      id: 4,
-      name: homeT('brandSection.brands.3.name'),
-      description: homeT('brandSection.brands.3.description'),
-      link: "/product/wa",
-      image: "/images/home/brand4.png"
-    }
-  ];
+  const [brands, setBrands] = useState<BrandItem[]>([]);
+  const [brandsLoading, setBrandsLoading] = useState(true);
 
-  const news = [
-    {
-      id: 1,
-      date: "2025.05.06",
-      title: "FlowCon产品助力乌兰察布优刻得数据中心项目",
-      link: "/news/1",
-      image: "https://picsum.photos/300/200"
-    },
-    {
-      id: 2,
-      date: "2025.05.06",
-      title: "FlowCon产品助力北京农行数据中心项目",
-      link: "/news/2",
-      image: "https://picsum.photos/300/200"
-    },
-    {
-      id: 3,
-      date: "2025.05.06",
-      title: "FlowCon产品助力罗湖区笋岗街道城建项目",
-      link: "/news/3",
-      image: "https://picsum.photos/300/200"
+  useEffect(() => {
+    const controller = new AbortController();
+
+    async function loadBrands() {
+      setBrandsLoading(true);
+      try {
+        const { data } = await getArticles<HomeBrandArticle>(
+          {
+            lang: locale,
+            populate: "cover",
+            filters: { type: { $eq: "home2" } },
+            sort: "sort:asc",
+          },
+          { signal: controller.signal }
+        );
+
+        const mapped = [...data]
+          .sort((a, b) => (a.sort ?? 0) - (b.sort ?? 0))
+          .map(mapBrandArticle)
+          .filter((brand): brand is BrandItem => brand !== null);
+
+        setBrands(mapped);
+      } catch (error) {
+        if (controller.signal.aborted) return;
+        console.error("Failed to load brands:", error);
+        setBrands([]);
+      } finally {
+        if (!controller.signal.aborted) setBrandsLoading(false);
+      }
     }
-  ];
+
+    loadBrands();
+    return () => controller.abort();
+  }, [locale]);
 
   const clients = [
     { id: 1, image: "/images/home/client1.png" }, 
@@ -163,129 +172,52 @@ export default function Page() {
           <div className="w-20 h-1 bg-blue-500 mx-auto"></div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {brands.map((brand) => (
-            <motion.div 
-              key={brand.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="bg-white p-6 shadow-md rounded-md"
-            >
-              <div className="mb-4 flex justify-center h-80 w-auto">
-                <Image 
-                  src={brand.image} 
-                  alt={brand.name} 
-                  width={200} 
-                  height={120} 
-                  className="rounded-md object-cover"
-                />
+        {brandsLoading ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[1, 2, 3, 4].map((i) => (
+              <div
+                key={i}
+                className="bg-white p-6 shadow-md rounded-md animate-pulse"
+              >
+                <div className="mb-4 h-80 bg-gray-200 rounded-md" />
+                <div className="h-6 bg-gray-200 rounded mb-4 w-3/4" />
+                <div className="h-4 bg-gray-200 rounded mb-2" />
+                <div className="h-4 bg-gray-200 rounded mb-4 w-full" />
+                <div className="h-4 bg-gray-200 rounded w-1/3" />
               </div>
-              <h3 className="text-xl font-bold mb-4">{brand.name}</h3>
-              <p className="text-gray-600 mb-4">{brand.description}</p>
-              <Link href={brand.link} className="text-blue-500 hover:underline">
-                {homeT('brandSection.brands.0.cta')}
-              </Link>
-            </motion.div>
-          ))}
-        </div>
+            ))}
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {brands.map((brand) => (
+              <motion.div
+                key={brand.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="bg-white p-6 shadow-md rounded-md"
+              >
+                <div className="mb-4 flex justify-center h-80 w-auto relative">
+                  <Image
+                    src={brand.image}
+                    alt={brand.name}
+                    width={200}
+                    height={320}
+                    className="rounded-md object-contain max-h-80 w-auto h-auto"
+                  />
+                </div>
+                <h3 className="text-xl font-bold mb-4">{brand.name}</h3>
+                <p className="text-gray-600 mb-4 line-clamp-6">{brand.description}</p>
+                {brand.link ? (
+                  <Link href={brand.link} className="text-blue-500 hover:underline">
+                    {homeT('brandSection.brands.0.cta')}
+                  </Link>
+                ) : null}
+              </motion.div>
+            ))}
+          </div>
+        )}
       </section>
-
-      {/* Service Center Section */}
-      {/* <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-2">{homeT('serviceSection.title')}</h2>
-            <div className="w-20 h-1 bg-blue-500 mx-auto"></div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <motion.div 
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
-              className="bg-white p-8 shadow-md rounded-md text-center"
-            >
-              <div className="flex justify-center mb-4">
-                <Image 
-                  src="https://picsum.photos/100/100" 
-                  alt={homeT('serviceSection.services.0.title')} 
-                  width={100} 
-                  height={100}
-                  className="rounded-full" 
-                />
-              </div>
-              <h3 className="text-xl font-bold mb-2">{homeT('serviceSection.services.0.title')}</h3>
-              <p className="uppercase text-sm text-gray-500 mb-4">{homeT('serviceSection.services.0.subtitle')}</p>
-              <Link href="/service/download" className="text-blue-500 hover:underline">
-                {homeT('serviceSection.services.0.cta')}
-              </Link>
-            </motion.div>
-            <motion.div 
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
-              className="bg-white p-8 shadow-md rounded-md text-center"
-            >
-              <div className="flex justify-center mb-4">
-                <Image 
-                  src="https://picsum.photos/100/100" 
-                  alt={homeT('serviceSection.services.1.title')} 
-                  width={100} 
-                  height={100}
-                  className="rounded-full" 
-                />
-              </div>
-              <h3 className="text-xl font-bold mb-2">{homeT('serviceSection.services.1.title')}</h3>
-              <p className="uppercase text-sm text-gray-500 mb-4">{homeT('serviceSection.services.1.subtitle')}</p>
-              <Link href="/service/tech" className="text-blue-500 hover:underline">
-                {homeT('serviceSection.services.1.cta')}
-              </Link>
-            </motion.div>
-          </div>
-        </div>
-      </section> */}
-
-      {/* News Section */}
-      {/* <section className="py-16 container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-2">{homeT('newsSection.title')}</h2>
-          <div className="w-20 h-1 bg-blue-500 mx-auto"></div>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {news.map((item) => (
-            <motion.div 
-              key={item.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="bg-white p-6 shadow-md rounded-md"
-            >
-              <div className="mb-4">
-                <Image 
-                  src={item.image} 
-                  alt={item.title} 
-                  width={300} 
-                  height={200}
-                  className="w-full h-48 object-cover rounded-md" 
-                />
-              </div>
-              <div className="text-gray-500 mb-2">{item.date}</div>
-              <h3 className="text-lg font-semibold mb-4">{item.title}</h3>
-              <Link href={item.link} className="text-blue-500 hover:underline">
-                {homeT('newsSection.viewDetails')}
-              </Link>
-            </motion.div>
-          ))}
-        </div>
-
-        <div className="text-center mt-8">
-          <Link href="/news" className="inline-block px-6 py-3 border border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white transition-colors rounded-md">
-            {homeT('newsSection.viewMore')}
-          </Link>
-        </div>
-      </section> */}
 
       {/* About Section */}
       <section className="py-16 bg-gray-50">

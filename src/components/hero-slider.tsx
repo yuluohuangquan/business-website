@@ -1,12 +1,17 @@
-"use client";
+﻿"use client";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { useLocale } from "next-intl";
+import {
+  getArticles,
+  getStrapiMediaUrl,
+  type HomeBannerArticle,
+} from "@/lib/strapi";
 
-// 导入 Swiper 样式
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -14,63 +19,97 @@ import "swiper/css/pagination";
 interface SlideType {
   id: number;
   image: string;
+  title: string;
   link?: string;
 }
 
-export function HeroSlider() {
-  const slides: SlideType[] = [
-    {
-      id: 1,
-      image: "/images/home/banner1.jpg",
-      link: "/"
-    },
-    {
-      id: 2,
-      image: "/images/home/banner2.jpg",
-      link: "/"
-    },
-    {
-      id: 3,
-      image: "/images/home/banner3.png",
-      link: "/"
-    },
-    {
-      id: 4,
-      image: "/images/home/banner4.jpg",
-      link: "/"
-    }
-  ];
+function mapArticleToSlide(article: HomeBannerArticle): SlideType | null {
+  const imagePath =
+    article.cover?.formats?.large?.url ??
+    article.cover?.url;
+  const image = getStrapiMediaUrl(imagePath);
+  if (!image) return null;
 
-  // 根据设备宽度设置轮播图高度
+  return {
+    id: article.id,
+    image,
+    title: article.title,
+    link: article.link ?? undefined,
+  };
+}
+
+export function HeroSlider() {
+  const locale = useLocale();
+  const [slides, setSlides] = useState<SlideType[]>([]);
+  const [loading, setLoading] = useState(true);
   const [bannerHeight, setBannerHeight] = useState("500px");
 
   useEffect(() => {
-    // 设置初始高度
+    const controller = new AbortController();
+
+    async function loadSlides() {
+      setLoading(true);
+      try {
+        const { data } = await getArticles<HomeBannerArticle>(
+          {
+            lang: locale,
+            populate: "cover",
+            filters: { type: { $eq: "home1" } },
+            sort: "sort:asc",
+          },
+          { signal: controller.signal }
+        );
+
+        const mapped = [...data]
+          .sort((a, b) => (a.sort ?? 0) - (b.sort ?? 0))
+          .map(mapArticleToSlide)
+          .filter((slide): slide is SlideType => slide !== null);
+
+        setSlides(mapped);
+      } catch (error) {
+        if (controller.signal.aborted) return;
+        console.error("Failed to load hero slides:", error);
+        setSlides([]);
+      } finally {
+        if (!controller.signal.aborted) setLoading(false);
+      }
+    }
+
+    loadSlides();
+    return () => controller.abort();
+  }, [locale]);
+
+  useEffect(() => {
     updateBannerHeight();
-    
-    // 监听窗口大小变化
     window.addEventListener("resize", updateBannerHeight);
-    
-    // 清理监听器
     return () => {
       window.removeEventListener("resize", updateBannerHeight);
     };
   }, []);
 
-  // 更新高度函数
   const updateBannerHeight = () => {
     const width = window.innerWidth;
     if (width < 640) {
-      // 移动设备
       setBannerHeight("300px");
     } else if (width < 1024) {
-      // 平板设备
       setBannerHeight("400px");
     } else {
-      // 桌面设备
       setBannerHeight("500px");
     }
   };
+
+  if (loading) {
+    return (
+      <div
+        className="relative w-full bg-gray-100 animate-pulse"
+        style={{ height: bannerHeight }}
+      />
+    );
+  }
+
+  if (slides.length === 0) {
+    return null;
+  }
 
   return (
     <div className="relative w-full" style={{ height: bannerHeight }}>
@@ -87,13 +126,19 @@ export function HeroSlider() {
         className="w-full h-full"
       >
         {slides.map((slide) => (
-          <SwiperSlide key={slide.id} className="relative h-full flex items-center justify-center">
+          <SwiperSlide
+            key={slide.id}
+            className="relative h-full flex items-center justify-center"
+          >
             {slide.link ? (
-              <Link href={slide.link} className="block w-full h-full flex items-center justify-center">
+              <Link
+                href={slide.link}
+                className="block w-full h-full flex items-center justify-center"
+              >
                 <div className="relative w-full h-full">
                   <Image
                     src={slide.image}
-                    alt={`Banner ${slide.id}`}
+                    alt={slide.title}
                     fill
                     priority
                     sizes="100vw"
@@ -105,7 +150,7 @@ export function HeroSlider() {
               <div className="relative w-full h-full">
                 <Image
                   src={slide.image}
-                  alt={`Banner ${slide.id}`}
+                  alt={slide.title}
                   fill
                   priority
                   sizes="100vw"
@@ -119,3 +164,4 @@ export function HeroSlider() {
     </div>
   );
 }
+
