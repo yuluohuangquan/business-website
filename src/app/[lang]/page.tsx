@@ -7,9 +7,8 @@ import { useState, useEffect } from "react";
 import { useTranslations, useLocale } from 'next-intl';
 import {
   getArticles,
-  getStrapiMediaUrl,
   type HomeBrandArticle,
-} from "@/lib/strapi";
+} from "@/lib/nocodb";
 
 interface BrandItem {
   id: number;
@@ -20,10 +19,10 @@ interface BrandItem {
 }
 
 function mapBrandArticle(article: HomeBrandArticle): BrandItem | null {
-  const imagePath =
+  const image =
     article.cover?.formats?.medium?.url ??
-    article.cover?.url;
-  const image = getStrapiMediaUrl(imagePath);
+    article.cover?.url ??
+    "";
   if (!image) return null;
 
   return {
@@ -51,7 +50,6 @@ export default function Page() {
         const { data } = await getArticles<HomeBrandArticle>(
           {
             lang: locale,
-            populate: "cover",
             filters: { type: { $eq: "home2" } },
             sort: "sort:asc",
           },

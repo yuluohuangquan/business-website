@@ -8,9 +8,8 @@ import { useState, useEffect } from "react";
 import { useLocale } from "next-intl";
 import {
   getArticles,
-  getStrapiMediaUrl,
   type HomeBannerArticle,
-} from "@/lib/strapi";
+} from "@/lib/nocodb";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -24,10 +23,10 @@ interface SlideType {
 }
 
 function mapArticleToSlide(article: HomeBannerArticle): SlideType | null {
-  const imagePath =
+  const image =
     article.cover?.formats?.large?.url ??
-    article.cover?.url;
-  const image = getStrapiMediaUrl(imagePath);
+    article.cover?.url ??
+    "";
   if (!image) return null;
 
   return {
@@ -53,7 +52,6 @@ export function HeroSlider() {
         const { data } = await getArticles<HomeBannerArticle>(
           {
             lang: locale,
-            populate: "cover",
             filters: { type: { $eq: "home1" } },
             sort: "sort:asc",
           },

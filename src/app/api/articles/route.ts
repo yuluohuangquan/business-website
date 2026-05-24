@@ -1,26 +1,18 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getStrapiServerUrl } from '@/lib/strapi/config';
+import { fetchNocoRecords } from '@/lib/nocodb/articles';
+import { normalizeRecord } from '@/lib/nocodb/normalize';
 
 export async function GET(request: NextRequest) {
-  const strapiUrl = getStrapiServerUrl();
-  const query = request.nextUrl.searchParams.toString();
-  const url = `${strapiUrl}/api/articles${query ? `?${query}` : ''}`;
+  try {
+    const searchParams = request.nextUrl.searchParams;
+    const response = await fetchNocoRecords(searchParams);
 
-  const headers: HeadersInit = {
-    'Content-Type': 'application/json',
-  };
-
-  const token = process.env.STRAPI_API_TOKEN;
-  if (token) {
-    headers.Authorization = `Bearer ${token}`;
+    return NextResponse.json({
+      data: response.records.map((record) => normalizeRecord(record)),
+    });
+  } catch (error) {
+    const message =
+      error instanceof Error ? error.message : 'Failed to fetch articles';
+    return NextResponse.json({ error: message }, { status: 500 });
   }
-
-  const response = await fetch(url, {
-    method: 'GET',
-    headers,
-    cache: 'no-store',
-  });
-
-  const body = await response.json();
-  return NextResponse.json(body, { status: response.status });
 }
